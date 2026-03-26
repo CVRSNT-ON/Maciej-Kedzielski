@@ -1,0 +1,56 @@
+[
+  {
+    "id": "living-minimal",
+    "name": "Modern Living",
+    "image": "images/rooms/living-minimal.jpg",
+    "wall_center_x": 55,
+    "wall_center_y": 30,
+    "wall_width_pct": 40,
+    "max_painting_pct": 35
+  },
+  {
+    "id": "living-marble",
+    "name": "Marble Living",
+    "image": "images/rooms/living-marble.jpg",
+    "wall_center_x": 55,
+    "wall_center_y": 30,
+    "wall_width_pct": 35,
+    "max_painting_pct": 30
+  },
+  {
+    "id": "living-grey",
+    "name": "Grey Sofa",
+    "image": "images/rooms/living-grey.jpg",
+    "wall_center_x": 52,
+    "wall_center_y": 28,
+    "wall_width_pct": 35,
+    "max_painting_pct": 30
+  },
+  {
+    "id": "studio-leather",
+    "name": "Studio",
+    "image": "images/rooms/studio-leather.jpg",
+    "wall_center_x": 42,
+    "wall_center_y": 28,
+    "wall_width_pct": 40,
+    "max_painting_pct": 32
+  },
+  {
+    "id": "gallery-gold",
+    "name": "Gallery",
+    "image": "images/rooms/gallery-gold.jpg",
+    "wall_center_x": 50,
+    "wall_center_y": 32,
+    "wall_width_pct": 45,
+    "max_painting_pct": 38
+  },
+  {
+    "id": "bedroom-wood",
+    "name": "Bedroom",
+    "image": "images/rooms/bedroom-wood.jpg",
+    "wall_center_x": 50,
+    "wall_center_y": 25,
+    "wall_width_pct": 30,
+    "max_painting_pct": 25
+  }
+]

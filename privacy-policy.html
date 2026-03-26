@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Maciej Kędzielski</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,300;0,6..96,400;1,6..96,300;1,6..96,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#F5F0E8;--text:#1A1A1A;--text-l:#5A5550;--accent:#5C3D5A;--border:#D4CFC5;--card:#FFFDF8;--display:'Syne',sans-serif;--body:'Inter',-apple-system,sans-serif;--max-w:1400px;--g:clamp(1.25rem,4vw,3rem)}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
+body{font-family:var(--body);background:var(--bg);color:var(--text);line-height:1.6;font-weight:300;-webkit-font-smoothing:antialiased}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.25rem var(--g);display:flex;justify-content:space-between;align-items:center;transition:background .4s,backdrop-filter .4s}
+.nav.scrolled{background:rgba(245,240,232,.92);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--border)}
+.nav-logo{font-family:var(--display);font-size:1.35rem;font-weight:700;color:var(--text);text-decoration:none}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-size:.78rem;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--text-l);text-decoration:none;transition:color .3s}
+.nav-links a:hover{color:var(--accent)}
+.hamburger{display:none;background:none;border:none;cursor:pointer;width:28px;height:20px;position:relative;z-index:110}
+.hamburger span{display:block;width:100%;height:1.5px;background:var(--text);position:absolute;left:0;transition:all .3s}
+.hamburger span:nth-child(1){top:0}.hamburger span:nth-child(2){top:50%;transform:translateY(-50%)}.hamburger span:nth-child(3){bottom:0}
+.hamburger.active span:nth-child(1){top:50%;transform:translateY(-50%) rotate(45deg)}.hamburger.active span:nth-child(2){opacity:0}.hamburger.active span:nth-child(3){bottom:50%;transform:translateY(50%) rotate(-45deg)}
+.mobile-menu{display:none;position:fixed;inset:0;z-index:105;background:rgba(245,240,232,.98);backdrop-filter:blur(20px);flex-direction:column;justify-content:center;align-items:center;gap:2.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:var(--display);font-size:1.8rem;font-weight:300;font-style:italic;color:var(--text);text-decoration:none}
+.mobile-close{position:absolute;top:1.25rem;right:var(--g);background:none;border:none;font-size:2rem;color:var(--text);cursor:pointer;z-index:111;line-height:1;padding:.25rem}
+.footer{border-top:1px solid var(--border);padding:2rem var(--g);display:flex;justify-content:space-between;align-items:center;max-width:var(--max-w);margin:0 auto;font-size:.78rem;color:var(--text-l);flex-wrap:wrap;gap:.75rem}
+.footer a{color:var(--text-l);text-decoration:none}.footer a:hover{color:var(--text)}
+.footer-links{display:flex;gap:1.5rem;flex-wrap:wrap}
+.legal-content{max-width:780px;margin:0 auto;padding:7rem var(--g) 4rem}
+.legal-content h1{font-family:var(--display);font-weight:300;font-size:clamp(2rem,4vw,3rem);margin-bottom:.5rem}
+.legal-content .date{font-size:.82rem;color:var(--text-l);margin-bottom:2.5rem}
+.legal-content h2{font-family:var(--display);font-weight:400;font-size:1.4rem;font-style:italic;margin:2rem 0 .75rem}
+.legal-content p,.legal-content li{font-size:.92rem;color:var(--text-l);line-height:1.8;margin-bottom:.75rem}
+.legal-content ul{padding-left:1.25rem;margin-bottom:1rem}
+.legal-content a{color:var(--accent)}
+@media(max-width:768px){.nav-links{display:none}.hamburger{display:block}.footer{flex-direction:column;text-align:center}}
+</style>
+</head>
+<body>
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav-logo">Maciej Kędzielski</a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="index.html#approach">Approach</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose" aria-label="Close menu">&times;</button>
+  <a href="index.html#about" onclick="closeMobile()">About</a>
+  <a href="portfolio.html" onclick="closeMobile()">Portfolio</a>
+  <a href="index.html#approach" onclick="closeMobile()">Approach</a>
+  <a href="index.html#contact" onclick="closeMobile()">Contact</a>
+</div>
+<div class="legal-content">
+  <h1>Privacy Policy</h1>
+  <p class="date">Last updated: 26 March 2026</p>
+  <h2>Introduction</h2>
+  <p>This privacy policy explains how Maciej Kędzielski collects, uses, and protects your personal information when you visit our website.</p>
+  <h2>Information We Collect</h2>
+  <p><strong>Contact Form Submissions:</strong> When you use our contact form, we collect your name, email address, subject selection, and message. This data is processed by Netlify Forms and used solely to respond to your inquiry.</p>
+  <p><strong>Hosting Data:</strong> Our hosting provider Netlify automatically collects standard server logs. This is governed by <a href="https://www.netlify.com/privacy/" target="_blank" rel="noopener">Netlify's privacy policy</a>.</p>
+  <p><strong>Google Fonts:</strong> This website loads fonts from Google Fonts, which may process your IP address. This is governed by <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's privacy policy</a>.</p>
+  <h2>How We Use Your Information</h2>
+  <p>We use contact form data exclusively to respond to inquiries about artworks, purchases, commissions, or exhibitions.</p>
+  <h2>Data Sharing</h2>
+  <p>We do not sell, rent, or share your personal information with third parties, except as necessary for hosting and form processing (Netlify).</p>
+  <h2>Your Rights (GDPR)</h2>
+  <p>Under the GDPR, you have the right to access, correct, delete, or restrict processing of your personal data. To exercise these rights, please use the <a href="index.html#contact">contact form</a>.</p>
+  <h2>Security</h2>
+  <p>Our website is served over HTTPS and form submissions are encrypted in transit.</p>
+  <h2>Changes to This Policy</h2>
+  <p>We may update this privacy policy from time to time. Changes will be posted on this page with an updated revision date.</p>
+</div>
+<footer class="footer">
+  <span>&copy; 2026 Maciej Kędzielski. All rights reserved.</span>
+  <div class="footer-links">
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="https://www.instagram.com/galerie_d.weil" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:.35rem"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>Instagram</a>
+  </div>
+</footer>
+<script>
+var nav=document.getElementById("nav");
+if(nav){window.addEventListener("scroll",function(){nav.classList.toggle("scrolled",window.scrollY>60)})}
+var hb=document.getElementById("hamburger"),mm=document.getElementById("mobileMenu"),mc=document.getElementById("mobileClose");
+if(hb){hb.addEventListener("click",function(){hb.classList.toggle("active");mm.classList.toggle("open");document.body.style.overflow=mm.classList.contains("open")?"hidden":""})}
+if(mc){mc.addEventListener("click",function(){closeMobile()})}
+function closeMobile(){if(hb){hb.classList.remove("active");mm.classList.remove("open");document.body.style.overflow=""}}
+</script>
+</body>
+</html>

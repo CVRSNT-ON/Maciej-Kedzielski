@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — Maciej Kędzielski</title>
+<meta name="description" content="Complete portfolio of paintings by Maciej Kędzielski. Original expressionist works available for purchase.">
+<meta name="author" content="Maciej Kędzielski">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta property="og:title" content="Portfolio — Maciej Kędzielski">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#F9F6F1;--bg-2:#F0EBE3;--dark:#111110;--dark-2:#2C4235;--text:#1A1917;--text-l:#6B6560;--accent:#C85C3A;--accent-l:#E8A88E;--border:#E0D9CE;--card:#FDFAF7;--display:'Syne',sans-serif;--body:'Inter',-apple-system,sans-serif;--max-w:1400px;--g:clamp(1.25rem,4vw,3rem)}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{font-family:var(--body);background:var(--dark);color:var(--bg);line-height:1.6;font-weight:300;-webkit-font-smoothing:antialiased}
+img{-webkit-user-select:none;user-select:none;pointer-events:none}
+a img,button img,.pf-card img{pointer-events:auto}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem var(--g);display:flex;justify-content:space-between;align-items:center;background:rgba(17,17,16,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(249,246,241,.06)}
+.nav-logo{font-family:var(--display);font-size:1rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--bg);text-decoration:none;transition:color .3s}
+.nav-logo:hover{color:var(--accent)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(249,246,241,.45);text-decoration:none;transition:color .3s}
+.nav-links a:hover,.nav-links a.active{color:var(--accent)}
+.hamburger{display:none;background:none;border:none;cursor:pointer;width:28px;height:20px;position:relative;z-index:110}
+.hamburger span{display:block;width:100%;height:2px;background:var(--bg);position:absolute;left:0;transition:all .3s}
+.hamburger span:nth-child(1){top:0}.hamburger span:nth-child(2){top:50%;transform:translateY(-50%)}.hamburger span:nth-child(3){bottom:0}
+.hamburger.active span:nth-child(1){top:50%;transform:translateY(-50%) rotate(45deg)}.hamburger.active span:nth-child(2){opacity:0}.hamburger.active span:nth-child(3){bottom:50%;transform:translateY(50%) rotate(-45deg)}
+.mobile-menu{display:none;position:fixed;inset:0;z-index:105;background:var(--dark);flex-direction:column;justify-content:center;align-items:center;gap:2.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:var(--display);font-size:2rem;font-weight:700;text-transform:uppercase;color:var(--bg);text-decoration:none;letter-spacing:.04em}
+.mobile-close{position:absolute;top:1.25rem;right:var(--g);background:none;border:none;font-size:2rem;color:var(--bg);cursor:pointer;z-index:111;line-height:1}
+.pf-header{padding:clamp(5rem,10vw,8rem) var(--g) clamp(2rem,4vw,3rem);max-width:var(--max-w);margin:0 auto}
+.pf-eyebrow{font-family:var(--display);font-size:.65rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem}
+.pf-title{font-family:var(--display);font-size:clamp(3rem,8vw,7rem);font-weight:800;line-height:.9;letter-spacing:-.02em;text-transform:uppercase;color:var(--bg)}
+.pf-sub{margin-top:1.25rem;font-size:.9rem;font-weight:300;color:rgba(249,246,241,.45);max-width:440px;line-height:1.7}
+.filter-row{padding:0 var(--g) 2rem;max-width:var(--max-w);margin:0 auto;display:flex;gap:.6rem;flex-wrap:wrap;align-items:center}
+.filter-btn{font-family:var(--display);font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:.5rem 1.2rem;background:none;border:1.5px solid rgba(249,246,241,.15);color:rgba(249,246,241,.4);cursor:pointer;transition:all .3s}
+.filter-btn:hover{border-color:rgba(249,246,241,.4);color:rgba(249,246,241,.7)}
+.filter-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pf-grid{max-width:var(--max-w);margin:0 auto;padding:0 var(--g) clamp(4rem,8vw,7rem);display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(249,246,241,.04);align-items:start}
+.pf-card{background:var(--dark);text-decoration:none;color:var(--bg);display:block;overflow:hidden;position:relative}
+.pf-card:hover .pf-card-img{transform:scale(1.04)}
+.pf-card-img-wrap{overflow:hidden}
+.pf-card-img{width:100%;display:block;object-fit:cover;transition:transform .6s ease}
+.pf-card-body{padding:1rem 1.1rem 1.25rem}
+.pf-card-badge{display:inline-block;font-size:.55rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .5rem;background:#2B6B3B;color:#fff;margin-bottom:.5rem}
+.pf-badge-inquire{background:#8B6914}
+.pf-card-cat{font-size:.6rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:.4rem}
+.pf-card-title{font-family:var(--display);font-size:.95rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-bottom:.25rem}
+.pf-card-meta{font-size:.72rem;color:rgba(249,246,241,.35)}
+.pf-card-price{font-family:var(--display);font-size:.95rem;font-weight:600;color:var(--accent);margin-top:.4rem}
+.pf-fade{opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease}
+.pf-fade.visible{opacity:1;transform:none}
+.footer{border-top:1px solid rgba(249,246,241,.06);padding:2rem var(--g);display:flex;justify-content:space-between;align-items:center;max-width:var(--max-w);margin:0 auto;font-size:.72rem;color:rgba(249,246,241,.3);flex-wrap:wrap;gap:.75rem}
+.footer a{color:rgba(249,246,241,.3);text-decoration:none;transition:color .3s}
+.footer a:hover{color:var(--accent)}
+.footer-links{display:flex;gap:1.5rem;flex-wrap:wrap;align-items:center}
+.footer-name{font-family:var(--display);font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(249,246,241,.45)}
+.cookie-banner{display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:rgba(17,17,16,.97);backdrop-filter:blur(12px);padding:1.1rem var(--g)}
+.cookie-inner{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap}
+.cookie-text{font-size:.78rem;font-weight:300;color:rgba(249,246,241,.6);line-height:1.6;flex:1;min-width:260px}
+.cookie-text a{color:var(--accent-l)}
+.cookie-btn{background:var(--bg);color:var(--dark);border:none;font-family:var(--display);font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:.65rem 1.8rem;cursor:pointer;white-space:nowrap;transition:background .3s}
+.cookie-btn:hover{background:var(--accent);color:#fff}
+@media(max-width:1024px){.pf-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){.pf-grid{grid-template-columns:1fr}.nav-links{display:none}.hamburger{display:block}.footer{flex-direction:column;text-align:center}}
+</style>
+</head>
+<body>
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav-logo">Maciej Kędzielski</a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="portfolio.html" class="active">Portfolio</a></li>
+    <li><a href="index.html#wear">Wear the Work</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose">&times;</button>
+  <a href="index.html#about" onclick="closeMobile()">About</a>
+  <a href="portfolio.html" onclick="closeMobile()">Portfolio</a>
+  <a href="index.html#wear" onclick="closeMobile()">Wear the Work</a>
+  <a href="index.html#contact" onclick="closeMobile()">Contact</a>
+</div>
+<div class="pf-header">
+  <p class="pf-eyebrow">Original Paintings</p>
+  <h1 class="pf-title">Portfolio</h1>
+  <p class="pf-sub">All works are originals in acrylic on canvas, 50 × 70 cm. Click any painting to see full details and a room preview.</p>
+</div>
+<div class="filter-row" id="filterBar"></div>
+<div class="pf-grid" id="portfolioGrid"></div>
+<footer>
+  <div class="footer">
+    <span class="footer-name">© 2026 Maciej Kędzielski</span>
+    <div class="footer-links">
+      <a href="privacy-policy.html">Privacy</a>
+      <a href="cookie-policy.html">Cookies</a>
+      <a href="index.html#wear">Wear the Work</a>
+    </div>
+  </div>
+</footer>
+<div class="cookie-banner" id="cookieBanner">
+  <div class="cookie-inner">
+    <p class="cookie-text">Essential cookies only. <a href="cookie-policy.html">Cookie Policy</a> · <a href="privacy-policy.html">Privacy Policy</a></p>
+    <button class="cookie-btn" onclick="acceptCookies()">Accept</button>
+  </div>
+</div>
+<script>
+var hb=document.getElementById('hamburger'),mm=document.getElementById('mobileMenu'),mc=document.getElementById('mobileClose');
+hb.addEventListener('click',function(){hb.classList.toggle('active');mm.classList.toggle('open');document.body.style.overflow=mm.classList.contains('open')?'hidden':'';});
+mc.addEventListener('click',function(){closeMobile();});
+function closeMobile(){hb.classList.remove('active');mm.classList.remove('open');document.body.style.overflow='';}
+var allWorks=[],activeFilter='All';
+fetch('works.json').then(function(r){return r.json();}).then(function(works){
+  allWorks=works.sort(function(a,b){return (a.order||99)-(b.order||99);});
+  buildFilters(); renderGrid();
+}).catch(function(){document.getElementById('portfolioGrid').innerHTML='<div style="padding:3rem;color:rgba(249,246,241,.4);text-align:center">Could not load works.</div>';});
+function buildFilters(){
+  var cats=['All'];
+  allWorks.forEach(function(w){if(w.category&&cats.indexOf(w.category)===-1)cats.push(w.category);});
+  var bar=document.getElementById('filterBar');
+  bar.innerHTML=cats.map(function(c){return '<button class="filter-btn'+(c===activeFilter?' active':'')+'" data-cat="'+c+'">'+c+'</button>';}).join('');
+  bar.querySelectorAll('.filter-btn').forEach(function(btn){btn.addEventListener('click',function(){activeFilter=this.getAttribute('data-cat');bar.querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('active');});this.classList.add('active');renderGrid();});});
+}
+function renderGrid(){
+  var filtered=activeFilter==='All'?allWorks:allWorks.filter(function(w){return w.category===activeFilter;});
+  var grid=document.getElementById('portfolioGrid');
+  var html='';
+  filtered.forEach(function(w){
+    var badgeClass=w.status==='Available'?'':'pf-badge-inquire';
+    var badgeBg=w.status==='Available'?'#2B6B3B':w.status==='Sold'?'#9B2C2C':'#8B6914';
+    var priceHtml=w.price?'€'+w.price:'Price on application';
+    html+='<a href="works/view.html?id='+encodeURIComponent(w.id)+'" class="pf-card pf-fade">'
+      +'<div class="pf-card-img-wrap"><img class="pf-card-img" src="'+w.image+'" alt="'+w.title+'" loading="lazy" style="aspect-ratio:'+w.width+'/'+w.height+'"></div>'
+      +'<div class="pf-card-body">'
+      +'<span class="pf-card-badge" style="background:'+badgeBg+'">'+w.status+'</span>'
+      +'<p class="pf-card-cat">'+w.category+'</p>'
+      +'<h3 class="pf-card-title">'+w.title+'</h3>'
+      +'<p class="pf-card-meta">'+w.medium+' · '+w.width+'×'+w.height+' cm · '+w.year+'</p>'
+      +'<p class="pf-card-price">'+priceHtml+'</p>'
+      +'</div></a>';
+  });
+  grid.innerHTML=html;
+  var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.05});
+  grid.querySelectorAll('.pf-fade').forEach(function(el){obs.observe(el);});
+}
+if(!localStorage.getItem('mk_cookie'))document.getElementById('cookieBanner').style.display='block';
+function acceptCookies(){localStorage.setItem('mk_cookie','1');document.getElementById('cookieBanner').style.display='none';}
+document.addEventListener('contextmenu',function(e){if(e.target.tagName==='IMG')e.preventDefault();});
+document.addEventListener('dragstart',function(e){if(e.target.tagName==='IMG')e.preventDefault();});
+</script>
+</body>
+</html>

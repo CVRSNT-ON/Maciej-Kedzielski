@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maciej Kędzielski — Painter</title>
+<meta name="description" content="Maciej Kędzielski — Expressionist painter from Kraków, Poland. Original paintings and art prints available.">
+<meta name="author" content="Maciej Kędzielski">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta property="og:title" content="Maciej Kędzielski — Painter">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://maciejkedzielski.com/">
+<meta property="og:image" content="images/works/work-01.jpg">
+<meta property="og:site_name" content="Maciej Kędzielski">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#F9F6F1;
+  --bg-2:#F0EBE3;
+  --dark:#111110;
+  --dark-2:#2C4235;
+  --text:#1A1917;
+  --text-l:#6B6560;
+  --accent:#C85C3A;
+  --accent-l:#E8A88E;
+  --border:#E0D9CE;
+  --card:#FDFAF7;
+  --display:'Syne',sans-serif;
+  --body:'Inter',-apple-system,sans-serif;
+  --max-w:1400px;
+  --g:clamp(1.25rem,4vw,3rem)
+}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{font-family:var(--body);background:var(--bg);color:var(--text);line-height:1.6;font-weight:300;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{-webkit-user-select:none;user-select:none;pointer-events:none}
+a img,button img{pointer-events:auto}
+
+/* ── NAV ── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem var(--g);display:flex;justify-content:space-between;align-items:center;transition:background .4s,box-shadow .4s}
+.nav.scrolled{background:rgba(249,246,241,.95);backdrop-filter:blur(16px);box-shadow:0 1px 0 var(--border)}
+.nav-logo{font-family:var(--display);font-size:1rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text);text-decoration:none;transition:color .3s}
+.nav-logo:hover{color:var(--accent)}
+.nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
+.nav-links a{font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--text-l);text-decoration:none;transition:color .3s}
+.nav-links a:hover,.nav-links a.active{color:var(--accent)}
+.nav-ig{display:flex;align-items:center;gap:.4rem;font-size:.72rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--text-l);text-decoration:none;transition:color .3s}
+.nav-ig svg{pointer-events:auto}
+.nav-ig:hover{color:var(--accent)}
+.hamburger{display:none;background:none;border:none;cursor:pointer;width:28px;height:20px;position:relative;z-index:110}
+.hamburger span{display:block;width:100%;height:2px;background:var(--text);position:absolute;left:0;transition:all .3s}
+.hamburger span:nth-child(1){top:0}.hamburger span:nth-child(2){top:50%;transform:translateY(-50%)}.hamburger span:nth-child(3){bottom:0}
+.hamburger.active span:nth-child(1){top:50%;transform:translateY(-50%) rotate(45deg)}.hamburger.active span:nth-child(2){opacity:0}.hamburger.active span:nth-child(3){bottom:50%;transform:translateY(50%) rotate(-45deg)}
+.mobile-menu{display:none;position:fixed;inset:0;z-index:105;background:var(--dark);flex-direction:column;justify-content:center;align-items:center;gap:2.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:var(--display);font-size:2rem;font-weight:700;text-transform:uppercase;color:var(--bg);text-decoration:none;transition:color .3s;letter-spacing:.04em}
+.mobile-menu a:hover{color:var(--accent)}
+.mobile-close{position:absolute;top:1.25rem;right:var(--g);background:none;border:none;font-size:2rem;color:var(--bg);cursor:pointer;z-index:111;line-height:1}
+
+/* ── HERO ── */
+.hero{height:100vh;min-height:600px;position:relative;overflow:hidden;display:flex;align-items:flex-end}
+.hero-img{position:absolute;inset:0;z-index:0}
+.hero-img img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+.hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(to top, rgba(17,17,16,.75) 0%, rgba(17,17,16,.2) 50%, transparent 100%)}
+.hero-content{position:relative;z-index:2;padding:0 var(--g) clamp(2.5rem,6vw,5rem);width:100%;max-width:var(--max-w);margin:0 auto}
+.hero-label{font-family:var(--display);font-size:.65rem;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--accent-l);margin-bottom:1.2rem;display:block}
+.hero-title{font-family:var(--display);font-size:clamp(3.5rem,9vw,9rem);font-weight:800;line-height:.9;color:#F9F6F1;letter-spacing:-.02em;margin-bottom:1.5rem;text-transform:uppercase}
+.hero-title span{display:block;color:var(--accent)}
+.hero-sub{font-size:.95rem;font-weight:300;color:rgba(249,246,241,.65);max-width:360px;line-height:1.65;margin-bottom:2rem}
+.btn{display:inline-block;font-family:var(--display);font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:.85rem 2.2rem;text-decoration:none;transition:all .3s;cursor:pointer;border:none}
+.btn-light{background:var(--bg);color:var(--dark)}
+.btn-light:hover{background:var(--accent);color:#fff}
+.btn-outline-light{border:1.5px solid rgba(249,246,241,.4);background:none;color:var(--bg)}
+.btn-outline-light:hover{background:var(--bg);color:var(--dark)}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* ── ABOUT ── */
+.about{padding:clamp(5rem,10vw,9rem) var(--g)}
+.about-inner{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:clamp(3rem,8vw,8rem);align-items:start}
+.about-left{}
+.about-eyebrow{font-family:var(--display);font-size:.65rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem}
+.about-title{font-family:var(--display);font-size:clamp(2rem,4vw,3.5rem);font-weight:800;line-height:1.0;letter-spacing:-.02em;text-transform:uppercase;margin-bottom:2rem}
+.about-body{font-size:.95rem;color:var(--text-l);line-height:1.85;margin-bottom:1.25rem}
+.about-facts{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2.5rem;padding-top:2.5rem;border-top:1px solid var(--border)}
+.about-fact-num{font-family:var(--display);font-size:2rem;font-weight:800;color:var(--accent);display:block;line-height:1}
+.about-fact-label{font-size:.65rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--text-l);margin-top:.35rem}
+.about-right{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;align-items:start}
+.about-img-a{grid-column:1/-1}
+.about-img-a img,.about-img-b img,.about-img-c img{width:100%;display:block;object-fit:cover}
+.about-img-a img{aspect-ratio:16/9}
+.about-img-b img,.about-img-c img{aspect-ratio:3/4}
+
+/* ── FEATURED ── */
+.featured{padding:clamp(4rem,8vw,7rem) var(--g);background:var(--dark)}
+.featured-inner{max-width:var(--max-w);margin:0 auto}
+.featured-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3rem}
+.featured-eyebrow{font-family:var(--display);font-size:.65rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--accent)}
+.featured-title{font-family:var(--display);font-size:clamp(1.8rem,4vw,3rem);font-weight:800;letter-spacing:-.02em;text-transform:uppercase;color:var(--bg);margin-top:.4rem}
+.featured-link{font-family:var(--display);font-size:.7rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:rgba(249,246,241,.4);text-decoration:none;transition:color .3s;align-self:flex-end}
+.featured-link:hover{color:var(--accent)}
+.works-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.06)}
+.work-card{background:var(--dark);text-decoration:none;color:var(--bg);display:block;overflow:hidden;position:relative}
+.work-card-img{width:100%;display:block;object-fit:cover;transition:transform .6s ease}
+.work-card:hover .work-card-img{transform:scale(1.04)}
+.work-card-info{padding:1rem 1.15rem 1.25rem}
+.work-card-title{font-family:var(--display);font-size:1rem;font-weight:700;letter-spacing:.02em;text-transform:uppercase;margin-bottom:.2rem}
+.work-card-meta{font-size:.72rem;color:rgba(249,246,241,.45)}
+.work-card-price{font-family:var(--display);font-size:1rem;font-weight:600;color:var(--accent);margin-top:.35rem}
+.work-badge{display:inline-block;font-size:.55rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .5rem;background:#2B6B3B;color:#fff;margin-bottom:.4rem}
+
+/* ── APPROACH ── */
+.approach{padding:clamp(5rem,10vw,9rem) var(--g)}
+.approach-inner{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:1fr 2fr;gap:clamp(3rem,8vw,7rem);align-items:start}
+.approach-left{}
+.approach-right{}
+.approach-cols{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+.approach-col h3{font-family:var(--display);font-size:1rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.75rem;color:var(--accent)}
+.approach-col p{font-size:.92rem;color:var(--text-l);line-height:1.8}
+.approach-quote{font-family:var(--display);font-size:clamp(1.4rem,3vw,2.2rem);font-weight:700;line-height:1.2;letter-spacing:-.01em;text-transform:uppercase;margin-bottom:2rem;color:var(--text)}
+
+/* ── WEAR THE WORK (Printify) ── */
+.wear{background:var(--dark-2);padding:clamp(5rem,10vw,9rem) var(--g)}
+.wear-inner{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:clamp(3rem,8vw,6rem);align-items:center}
+.wear-text{}
+.wear-eyebrow{font-family:var(--display);font-size:.65rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--accent-l);margin-bottom:1.2rem}
+.wear-title{font-family:var(--display);font-size:clamp(2.5rem,6vw,5rem);font-weight:800;line-height:.9;letter-spacing:-.02em;text-transform:uppercase;color:#F9F6F1;margin-bottom:1.5rem}
+.wear-body{font-size:.95rem;color:rgba(249,246,241,.65);line-height:1.8;margin-bottom:2rem}
+.wear-items{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:2.5rem}
+.wear-item{font-family:var(--display);font-size:.62rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:.4rem .9rem;border:1px solid rgba(249,246,241,.2);color:rgba(249,246,241,.55)}
+.btn-accent{background:var(--accent);color:#fff}
+.btn-accent:hover{background:#a84a2e}
+.wear-preview{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.wear-preview-img{aspect-ratio:1;overflow:hidden;background:rgba(255,255,255,.04)}
+.wear-preview-img img{width:100%;height:100%;object-fit:cover;display:block;mix-blend-mode:luminosity;opacity:.7;transition:opacity .4s,mix-blend-mode .4s}
+.wear-preview-img:hover img{opacity:1;mix-blend-mode:normal}
+
+/* Printify embed overlay */
+.printify-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(17,17,16,.85);backdrop-filter:blur(8px);justify-content:center;align-items:center;padding:1.5rem}
+.printify-overlay.open{display:flex}
+.printify-modal{background:#fff;width:100%;max-width:1100px;height:85vh;max-height:800px;position:relative;border-radius:4px;overflow:hidden}
+.printify-modal-close{position:absolute;top:.75rem;right:.75rem;z-index:10;background:var(--dark);color:#fff;border:none;width:36px;height:36px;cursor:pointer;font-size:1.2rem;display:flex;align-items:center;justify-content:center;border-radius:2px;transition:background .3s}
+.printify-modal-close:hover{background:var(--accent)}
+.printify-iframe-wrap{width:100%;height:100%}
+.printify-iframe-wrap iframe{width:100%;height:100%;border:none}
+.printify-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center;background:#f8f6f3;gap:1rem}
+.printify-placeholder p{font-family:var(--body);font-size:.88rem;color:#666;max-width:480px;line-height:1.7}
+.printify-placeholder code{background:#eee;padding:.2rem .5rem;font-size:.8rem;border-radius:2px;display:inline-block;margin-top:.5rem}
+
+/* ── EXHIBITIONS ── */
+.exhibitions{padding:clamp(4rem,7vw,7rem) var(--g)}
+.exhibitions-inner{max-width:var(--max-w);margin:0 auto}
+.exh-list{margin-top:2rem}
+.exh-item{display:grid;grid-template-columns:160px 1fr auto;gap:1.5rem;align-items:center;padding:1.25rem 0;border-bottom:1px solid var(--border)}
+.exh-item:first-child{border-top:1px solid var(--border)}
+.exh-date{font-size:.82rem;color:var(--text-l)}
+.exh-name{font-family:var(--display);font-size:1.1rem;font-weight:700;text-transform:uppercase;letter-spacing:.02em;margin-bottom:.2rem}
+.exh-venue{font-size:.82rem;color:var(--text-l)}
+.exh-tag{font-size:.62rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:.3rem .8rem;border:1.5px solid var(--border);color:var(--text-l);white-space:nowrap}
+.exh-tag.current{border-color:var(--accent);color:var(--accent)}
+
+/* ── CONTACT ── */
+.contact{padding:clamp(5rem,10vw,9rem) var(--g);background:var(--dark)}
+.contact-inner{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:1fr 1.5fr;gap:clamp(2rem,6vw,6rem)}
+.contact-info{}
+.contact-eyebrow{font-family:var(--display);font-size:.65rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem}
+.contact-title{font-family:var(--display);font-size:clamp(2rem,4vw,3.5rem);font-weight:800;letter-spacing:-.02em;text-transform:uppercase;color:var(--bg);line-height:1;margin-bottom:1.5rem}
+.contact-desc{font-size:.92rem;color:rgba(249,246,241,.55);line-height:1.8;margin-bottom:2rem}
+.contact-ig{display:inline-flex;align-items:center;gap:.5rem;font-size:.78rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(249,246,241,.4);text-decoration:none;transition:color .3s}
+.contact-ig:hover{color:var(--accent)}
+.contact-form{display:flex;flex-direction:column;gap:1rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.contact-form label{font-size:.65rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(249,246,241,.4);display:block;margin-bottom:.35rem}
+.contact-form input,.contact-form textarea,.contact-form select{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(249,246,241,.12);padding:.85rem 1rem;font-family:var(--body);font-size:.88rem;font-weight:300;color:var(--bg);transition:border-color .3s;outline:none;-webkit-appearance:none}
+.contact-form input:focus,.contact-form textarea:focus,.contact-form select:focus{border-color:var(--accent)}
+.contact-form select option{background:var(--dark);color:var(--bg)}
+.contact-form textarea{resize:vertical;min-height:110px}
+.contact-form button{align-self:flex-start;background:var(--accent);color:#fff;border:none;font-family:var(--display);font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:.9rem 2.5rem;cursor:pointer;transition:background .3s}
+.contact-form button:hover{background:#a84a2e}
+.honeypot{display:none}
+
+/* ── SECTION LABEL ── */
+.section-eyebrow{font-family:var(--display);font-size:.65rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem}
+.section-title{font-family:var(--display);font-size:clamp(1.8rem,4vw,3rem);font-weight:800;letter-spacing:-.02em;text-transform:uppercase;margin-bottom:1rem}
+
+/* ── FOOTER ── */
+.footer{border-top:1px solid rgba(249,246,241,.08);padding:2rem var(--g);display:flex;justify-content:space-between;align-items:center;max-width:var(--max-w);margin:0 auto;font-size:.72rem;color:rgba(249,246,241,.35);flex-wrap:wrap;gap:.75rem;background:var(--dark)}
+.footer a{color:rgba(249,246,241,.35);text-decoration:none;transition:color .3s}
+.footer a:hover{color:var(--accent)}
+.footer-links{display:flex;gap:1.5rem;flex-wrap:wrap;align-items:center}
+.footer-name{font-family:var(--display);font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(249,246,241,.5)}
+
+/* ── COOKIE ── */
+.cookie-banner{display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:rgba(17,17,16,.97);backdrop-filter:blur(12px);padding:1.1rem var(--g)}
+.cookie-inner{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap}
+.cookie-text{font-size:.78rem;font-weight:300;color:rgba(249,246,241,.6);line-height:1.6;flex:1;min-width:260px}
+.cookie-text a{color:var(--accent-l)}
+.cookie-btn{background:var(--bg);color:var(--dark);border:none;font-family:var(--display);font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:.65rem 1.8rem;cursor:pointer;white-space:nowrap;transition:background .3s}
+.cookie-btn:hover{background:var(--accent);color:#fff}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .works-grid{grid-template-columns:repeat(2,1fr)}
+  .wear-inner{grid-template-columns:1fr}
+  .wear-preview{display:none}
+  .approach-inner{grid-template-columns:1fr}
+  .approach-cols{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  .nav-links{display:none}.nav-ig{display:none}.hamburger{display:block}
+  .works-grid{grid-template-columns:1fr;gap:1px}
+  .about-inner{grid-template-columns:1fr}
+  .about-right{display:none}
+  .contact-inner{grid-template-columns:1fr}
+  .exh-item{grid-template-columns:1fr;gap:.3rem}.exh-tag{display:none}
+  .form-row{grid-template-columns:1fr}
+  .approach-cols{grid-template-columns:1fr}
+  .footer{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav-logo">Maciej Kędzielski</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="#wear">Wear the Work</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="https://www.instagram.com/kedz_art" target="_blank" rel="noopener" class="nav-ig">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+    Instagram
+  </a>
+  <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose">&times;</button>
+  <a href="#about" onclick="closeMobile()">About</a>
+  <a href="portfolio.html" onclick="closeMobile()">Portfolio</a>
+  <a href="#wear" onclick="closeMobile()">Wear the Work</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-img">
+    <img src="images/works/work-01.jpg" alt="Maciej Kędzielski — Untitled I" loading="eager">
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-label">Painter — Kraków, Poland</span>
+    <h1 class="hero-title">Maciej<span>Kędzielski</span></h1>
+    <p class="hero-sub">Expressionist painting guided by instinct, built through gesture and accumulated colour.</p>
+    <div style="display:flex;gap:1rem;flex-wrap:wrap">
+      <a href="portfolio.html" class="btn btn-light">View Portfolio</a>
+      <a href="#wear" class="btn btn-outline-light">Wear the Work</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="about">
+  <div class="about-inner">
+    <div class="about-left reveal">
+      <p class="about-eyebrow">The Artist</p>
+      <h2 class="about-title">Self-taught.<br>Instinct-driven.</h2>
+      <p class="about-body">Maciej Kędzielski was born in 1983 in Katowice, Poland's industrial heartland. He came to painting not through formal instruction but through the necessity of making sense of experience — his most reliable guide has always been intuition.</p>
+      <p class="about-body">His early work was graphic and monochrome: abstract forms evoking the architecture of the human head, rendered in pencil and ink. Around 2024 he moved decisively into colour. What followed was an expansion of both palette and ambition.</p>
+      <p class="about-body">Working in Kraków, Kędzielski builds his canvases through accumulated gestures — each layer a record of decision and doubt, pressure and release. The resulting works sit firmly within expressionism, but they resist easy categorisation. They are too physical for the decorative, too intuitive for the conceptual.</p>
+      <div class="about-facts">
+        <div>
+          <span class="about-fact-num">1983</span>
+          <p class="about-fact-label">Born, Katowice</p>
+        </div>
+        <div>
+          <span class="about-fact-num">Self-<br>taught</span>
+          <p class="about-fact-label">No formal training</p>
+        </div>
+        <div>
+          <span class="about-fact-num">2024</span>
+          <p class="about-fact-label">Turned to colour</p>
+        </div>
+        <div>
+          <span class="about-fact-num">PL</span>
+          <p class="about-fact-label">Based in Kraków</p>
+        </div>
+      </div>
+    </div>
+    <div class="about-right reveal">
+      <div class="about-img-a">
+        <img src="images/works/work-06.jpg" alt="Untitled VI" loading="lazy">
+      </div>
+      <div class="about-img-b">
+        <img src="images/works/work-03.jpg" alt="Untitled III" loading="lazy">
+      </div>
+      <div class="about-img-c">
+        <img src="images/works/work-07.jpg" alt="Untitled VII" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED WORKS -->
+<section class="featured">
+  <div class="featured-inner">
+    <div class="featured-top reveal">
+      <div>
+        <p class="featured-eyebrow">Selected Works</p>
+        <h2 class="featured-title">Recent<br>Paintings</h2>
+      </div>
+      <a href="portfolio.html" class="featured-link">Full portfolio →</a>
+    </div>
+    <div class="works-grid reveal" id="featuredGrid">
+      <!-- filled by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- APPROACH -->
+<section id="approach" class="approach">
+  <div class="approach-inner">
+    <div class="reveal">
+      <p class="section-eyebrow">Process</p>
+      <p class="approach-quote">Intuition as the only reliable<br>compass</p>
+    </div>
+    <div class="approach-cols reveal">
+      <div class="approach-col">
+        <h3>The Mark</h3>
+        <p>Every painting begins without a plan. Kędzielski starts from a physical impulse — a direction, a colour, a pressure on the brush. Each mark invites the next and refuses the one that doesn't belong.</p>
+      </div>
+      <div class="approach-col">
+        <h3>The Colour</h3>
+        <p>Since his shift to paint in 2024, colour has become the primary language. Terracottas and greens, sky blues and raw umbers build compositions that feel instinctively balanced despite their apparent chaos.</p>
+      </div>
+      <div class="approach-col">
+        <h3>The Surface</h3>
+        <p>Layers accumulate and are partially destroyed. Passages are covered, scraped, re-marked. The final surface carries the history of the painting's making — nothing is hidden.</p>
+      </div>
+      <div class="approach-col">
+        <h3>The Form</h3>
+        <p>Forms emerge from the process rather than preceding it. Earlier, these were heads. Now they are less specific — energy, weight, direction. The human presence is felt rather than depicted.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WEAR THE WORK -->
+<section id="wear" class="wear">
+  <div class="wear-inner">
+    <div class="wear-text reveal">
+      <p class="wear-eyebrow">Wear the Work</p>
+      <h2 class="wear-title">Art on<br>Everything</h2>
+      <p class="wear-body">Kędzielski's paintings are available printed on a wide range of objects and garments — from t-shirts and hoodies to tote bags, posters, cushions and phone cases. Each product is printed on demand and ships worldwide.</p>
+      <div class="wear-items">
+        <span class="wear-item">T-shirts</span>
+        <span class="wear-item">Hoodies</span>
+        <span class="wear-item">Tote Bags</span>
+        <span class="wear-item">Posters</span>
+        <span class="wear-item">Phone Cases</span>
+        <span class="wear-item">Cushions</span>
+        <span class="wear-item">Mugs</span>
+        <span class="wear-item">Canvas Prints</span>
+      </div>
+      <button class="btn btn-accent" onclick="openPrintifyShop()">Open the Shop</button>
+    </div>
+    <div class="wear-preview reveal">
+      <div class="wear-preview-img"><img src="images/works/work-01.jpg" alt="" loading="lazy"></div>
+      <div class="wear-preview-img"><img src="images/works/work-04.jpg" alt="" loading="lazy"></div>
+      <div class="wear-preview-img"><img src="images/works/work-07.jpg" alt="" loading="lazy"></div>
+      <div class="wear-preview-img"><img src="images/works/work-02.jpg" alt="" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRINTIFY OVERLAY -->
+<div class="printify-overlay" id="printifyOverlay" onclick="closePrintifyShop(event)">
+  <div class="printify-modal">
+    <button class="printify-modal-close" onclick="closePrintifyShop()">&times;</button>
+    <div class="printify-iframe-wrap" id="printifyContent">
+      <!-- INSTRUCTIONS FOR MACIEJ:
+           1. Go to printify.com → My stores → select your store
+           2. Go to Store → Popup store → copy your store URL
+           3. Replace the placeholder below with your Printify popup store iframe:
+              <iframe src="https://your-store.creator-spring.com" ...></iframe>
+           OR use Printify's popup button script and trigger it here.
+      -->
+      <div class="printify-placeholder">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#C85C3A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <p>The Printify shop will appear here.<br>
+        To activate: create your store on <strong>printify.com</strong>, enable the Popup Store feature, then replace this placeholder with your store embed code.</p>
+        <p style="margin-top:1rem;font-size:.78rem;color:#999">
+          Printify → My Stores → Popup Store → copy the embed snippet<br>
+          Paste it in <code>index.html</code> inside <code>#printifyContent</code>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EXHIBITIONS -->
+<section id="exhibitions" class="exhibitions">
+  <div class="exhibitions-inner">
+    <div class="reveal">
+      <p class="section-eyebrow">Exhibitions</p>
+      <h2 class="section-title">On Show</h2>
+    </div>
+    <div class="exh-list reveal" id="exhList">
+      <!-- filled by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <div class="contact-inner">
+    <div class="reveal">
+      <p class="contact-eyebrow">Get in Touch</p>
+      <h2 class="contact-title">Inquiries &amp;<br>Commissions</h2>
+      <p class="contact-desc">For inquiries about available works, purchases, or commissions, reach out directly. All messages are answered personally.</p>
+      <a href="https://www.instagram.com/kedz_art" target="_blank" rel="noopener" class="contact-ig">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        @kedz_art on Instagram
+      </a>
+    </div>
+    <form class="contact-form reveal" name="contact" method="POST" data-netlify="true" id="contactForm">
+      <input type="hidden" name="form-name" value="contact">
+      <p class="honeypot"><label>Don't fill: <input name="bot-field"></label></p>
+      <div class="form-row">
+        <div>
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+      </div>
+      <div>
+        <label for="subject">Subject</label>
+        <select id="subject" name="subject">
+          <option value="general">General Inquiry</option>
+          <option value="purchase">Purchase / Availability</option>
+          <option value="commission">Commission</option>
+          <option value="exhibition">Exhibition</option>
+        </select>
+      </div>
+      <div>
+        <label for="message">Message</label>
+        <textarea id="message" name="message" required></textarea>
+      </div>
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:var(--dark)">
+  <div class="footer">
+    <span class="footer-name">© 2026 Maciej Kędzielski</span>
+    <div class="footer-links">
+      <a href="privacy-policy.html">Privacy</a>
+      <a href="cookie-policy.html">Cookies</a>
+      <a href="#wear" onclick="setTimeout(openPrintifyShop,300)">Wear the Work</a>
+      <a href="https://www.instagram.com/kedz_art" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.4rem">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        Instagram
+      </a>
+    </div>
+  </div>
+</footer>
+
+<!-- COOKIE BANNER -->
+<div class="cookie-banner" id="cookieBanner">
+  <div class="cookie-inner">
+    <p class="cookie-text">We use essential cookies only. <a href="cookie-policy.html">Cookie Policy</a> · <a href="privacy-policy.html">Privacy Policy</a></p>
+    <button class="cookie-btn" onclick="acceptCookies()">Accept</button>
+  </div>
+</div>
+
+<script>
+// Nav
+var nav=document.getElementById('nav');
+window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>60);});
+
+// Hamburger
+var hb=document.getElementById('hamburger'),mm=document.getElementById('mobileMenu'),mc=document.getElementById('mobileClose');
+hb.addEventListener('click',function(){hb.classList.toggle('active');mm.classList.toggle('open');document.body.style.overflow=mm.classList.contains('open')?'hidden':'';});
+mc.addEventListener('click',closeMobile);
+function closeMobile(){hb.classList.remove('active');mm.classList.remove('open');document.body.style.overflow='';}
+
+// Reveal
+var revObs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');revObs.unobserve(e.target);}});},{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(function(el){revObs.observe(el);});
+
+// Featured works
+fetch('works.json').then(function(r){return r.json();}).then(function(works){
+  var featured=works.filter(function(w){return w.featured&&w.status!=='Sold';}).sort(function(a,b){return (a.order||99)-(b.order||99);});
+  var grid=document.getElementById('featuredGrid');
+  var html='';
+  featured.forEach(function(w){
+    var badgeColor=w.status==='Available'?'#2B6B3B':'#8B6914';
+    var priceHtml=w.price?'€'+w.price:'Price on application';
+    html+='<a href="works/view.html?id='+encodeURIComponent(w.id)+'" class="work-card">'
+      +'<img class="work-card-img" src="'+w.image+'" alt="'+w.title+'" loading="lazy" style="aspect-ratio:'+w.width+'/'+w.height+'">'
+      +'<div class="work-card-info">'
+      +'<span class="work-badge" style="background:'+badgeColor+'">'+w.status+'</span>'
+      +'<h3 class="work-card-title">'+w.title+'</h3>'
+      +'<p class="work-card-meta">'+w.medium+' · '+w.width+'×'+w.height+' cm</p>'
+      +'<p class="work-card-price">'+priceHtml+'</p>'
+      +'</div></a>';
+  });
+  grid.innerHTML=html;
+}).catch(function(){});
+
+// Exhibitions
+fetch('exhibitions.json').then(function(r){return r.json();}).then(function(exhs){
+  var list=document.getElementById('exhList');
+  var now=new Date();
+  exhs.sort(function(a,b){return (b.date_from||'').localeCompare(a.date_from||'');});
+  list.innerHTML=exhs.map(function(ex){
+    var from=new Date(ex.date_from+'T12:00:00');
+    var to=ex.date_to?new Date(ex.date_to+'T12:00:00'):null;
+    var isCurrent=from<=now&&(!to||to>=now);
+    var dateStr=from.toLocaleDateString('en-GB',{month:'short',year:'numeric'});
+    if(to) dateStr+=' – '+to.toLocaleDateString('en-GB',{month:'short',year:'numeric'});
+    return '<div class="exh-item"><span class="exh-date">'+dateStr+'</span>'
+      +'<div><p class="exh-name">'+ex.name+'</p><p class="exh-venue">'+ex.venue+'</p></div>'
+      +'<span class="exh-tag'+(isCurrent?' current':'')+'">'+( isCurrent?'Current':'Past')+'</span></div>';
+  }).join('') || '<p style="color:var(--text-l);font-size:.9rem;padding:1.5rem 0">No exhibitions listed yet.</p>';
+}).catch(function(){});
+
+// Printify overlay
+function openPrintifyShop(){
+  document.getElementById('printifyOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closePrintifyShop(e){
+  if(e&&e.target!==document.getElementById('printifyOverlay'))return;
+  document.getElementById('printifyOverlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+// Contact form session prefill
+(function(){
+  var msg=sessionStorage.getItem('formMsg'),subj=sessionStorage.getItem('formSubj');
+  if(msg){var m=document.getElementById('message');if(m)m.value=msg;sessionStorage.removeItem('formMsg');}
+  if(subj){var s=document.getElementById('subject');if(s)s.value=subj;sessionStorage.removeItem('formSubj');}
+})();
+
+// Cookie
+if(!localStorage.getItem('mk_cookie'))document.getElementById('cookieBanner').style.display='block';
+function acceptCookies(){localStorage.setItem('mk_cookie','1');document.getElementById('cookieBanner').style.display='none';}
+
+// Image protection
+document.addEventListener('contextmenu',function(e){if(e.target.tagName==='IMG')e.preventDefault();});
+document.addEventListener('dragstart',function(e){if(e.target.tagName==='IMG')e.preventDefault();});
+
+// Netlify Identity
+if(window.netlifyIdentity){
+  window.netlifyIdentity.on('init',function(user){
+    if(!user){window.netlifyIdentity.on('login',function(){document.location.href='/admin/';});}
+  });
+}
+</script>
+</body>
+</html>

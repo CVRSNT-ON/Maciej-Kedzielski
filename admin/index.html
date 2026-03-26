@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Admin — Maciej Kędzielski</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#F5F0E8;--text:#1A1A1A;--text-l:#5A5550;
+  --accent:#C85C3A;--accent-h:#a84a2e;
+  --border:#D4CFC5;--card:#FFFDF8;
+  --danger:#9B2C2C;--success:#2B6B3B;
+  --display:'Syne',sans-serif;
+  --body:'Inter',-apple-system,sans-serif;
+  --max-w:1200px;--g:clamp(1.25rem,4vw,2rem)
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--bg);color:var(--text);line-height:1.6;font-weight:300;-webkit-font-smoothing:antialiased}
+.admin-nav{position:sticky;top:0;z-index:100;background:rgba(245,240,232,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.85rem var(--g);display:flex;justify-content:space-between;align-items:center}
+.admin-nav-left{display:flex;align-items:center;gap:1rem}
+.admin-nav-logo{font-family:var(--display);font-size:1.2rem;font-weight:400;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text);text-decoration:none}
+.admin-nav-badge{font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .5rem;background:var(--accent);color:#fff;border-radius:2px}
+.admin-nav-right{display:flex;align-items:center;gap:1rem}
+.admin-nav a{font-size:.78rem;color:var(--text-l);text-decoration:none;transition:color .3s}
+.admin-nav a:hover{color:var(--accent)}
+#loginScreen{min-height:100vh;display:none;flex-direction:column;justify-content:center;align-items:center;padding:2rem;text-align:center}
+#loginScreen h1{font-family:var(--display);font-weight:300;font-style:italic;font-size:2.5rem;margin-bottom:.5rem}
+#loginScreen p{color:var(--text-l);margin-bottom:2rem;font-size:.92rem}
+.login-btn{background:var(--text);color:var(--bg);border:none;font-family:var(--body);font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;padding:.9rem 2.5rem;cursor:pointer;transition:background .3s}
+.login-btn:hover{background:var(--accent)}
+#adminPanel{display:none}
+.admin-content{max-width:var(--max-w);margin:0 auto;padding:2rem var(--g)}
+.admin-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:2rem;flex-wrap:wrap;gap:1rem}
+.admin-header h2{font-family:var(--display);font-weight:300;font-size:1.8rem}
+.btn-sm{font-family:var(--body);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;padding:.5rem 1.2rem;cursor:pointer;transition:all .3s;border:none;border-radius:0}
+.btn-primary{background:var(--accent);color:#fff}.btn-primary:hover{background:var(--accent-h)}
+.btn-outline-sm{background:none;border:1px solid var(--border);color:var(--text)}.btn-outline-sm:hover{border-color:var(--text)}
+.btn-danger{background:var(--danger);color:#fff}.btn-danger:hover{background:#7a2222}
+.btn-success{background:var(--success);color:#fff}.btn-success:hover{background:#1e5a2e}
+.btn-sm:disabled{opacity:.5;cursor:not-allowed}
+.admin-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-bottom:2.5rem}
+.stat-card{background:var(--card);border:1px solid var(--border);padding:1.25rem;text-align:center}
+.stat-number{font-family:var(--display);font-size:2rem;font-weight:500;color:var(--accent)}
+.stat-label{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-l);margin-top:.25rem}
+.works-table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--border)}
+.works-table th{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-l);text-align:left;padding:.75rem 1rem;border-bottom:2px solid var(--border);background:var(--bg)}
+.works-table td{padding:.6rem 1rem;border-bottom:1px solid var(--border);font-size:.88rem;vertical-align:middle}
+.works-table tr:hover td{background:rgba(92,61,90,.03)}
+.works-table img.thumb-sm{width:50px;height:50px;object-fit:cover;display:block;border:1px solid var(--border);transition:transform .2s,box-shadow .2s;cursor:zoom-in}
+.thumb-popup{display:none;position:fixed;z-index:500;width:220px;height:220px;object-fit:cover;border:2px solid var(--border);box-shadow:0 12px 40px rgba(0,0,0,.25);pointer-events:none;background-size:cover;background-position:center}
+.works-table img:hover{transform:scale(4);box-shadow:0 8px 32px rgba(0,0,0,.3);z-index:10;position:relative}
+.status-badge{display:inline-block;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;padding:.15rem .45rem;border-radius:2px}
+.status-available{background:#2B6B3B;color:#fff}
+.status-sold{background:var(--danger);color:#fff}
+.status-reserved{background:#8B6914;color:#fff}
+.status-select{font-family:var(--body);font-size:.65rem;letter-spacing:.06em;text-transform:uppercase;padding:.2rem .35rem;border-radius:2px;border:none;cursor:pointer;font-weight:500;outline:none;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5'%3E%3Cpath d='M0 0l4 5 4-5z' fill='%23fff'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 4px center;padding-right:16px}
+.status-select.sel-available{background:#2B6B3B;color:#fff}
+.status-select.sel-sold{background:var(--danger);color:#fff}
+.status-select.sel-reserved{background:#8B6914;color:#fff}
+.table-actions{display:flex;gap:.4rem}
+.table-wrap{overflow-x:auto;margin-bottom:2rem}
+.star{cursor:pointer;font-size:1.2rem;transition:color .2s;background:none;border:none;padding:0}
+.star.on{color:#D4A017}.star.off{color:var(--border)}
+.drag-handle{cursor:grab;color:var(--border);font-size:1.1rem;user-select:none;transition:color .2s;padding:0 .25rem}
+.drag-handle:hover{color:var(--text)}
+.drag-handle:active{cursor:grabbing}
+tr.dragging{opacity:.4;background:rgba(92,61,90,.05)}
+tr.drag-over td{border-top:2px solid var(--accent)}
+tr.drag-below td{border-bottom:2px solid var(--accent)}
+.modal-overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(26,26,26,.6);backdrop-filter:blur(4px);justify-content:center;align-items:flex-start;padding:2rem;overflow-y:auto}
+.modal-overlay.open{display:flex}
+.modal{background:var(--bg);border:1px solid var(--border);width:100%;max-width:680px;margin:2rem auto;padding:0;box-shadow:0 20px 60px rgba(0,0,0,.15)}
+.modal-header{display:flex;justify-content:space-between;align-items:center;padding:1.25rem 1.5rem;border-bottom:1px solid var(--border)}
+.modal-header h3{font-family:var(--display);font-weight:400;font-weight:700;font-size:1.1rem;text-transform:uppercase;letter-spacing:.04em}
+.modal-close{background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--text-l);transition:color .3s;line-height:1}
+.modal-close:hover{color:var(--text)}
+.modal-body{padding:1.5rem}
+.modal-footer{padding:1rem 1.5rem;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:.5rem}
+.form-group{margin-bottom:1.15rem}
+.form-group label{display:block;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-l);margin-bottom:.35rem}
+.form-group input,.form-group textarea,.form-group select{width:100%;background:var(--card);border:1px solid var(--border);padding:.7rem .9rem;font-family:var(--body);font-size:.88rem;font-weight:300;color:var(--text);transition:border-color .3s;outline:none}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--accent)}
+.form-group textarea{resize:vertical;min-height:100px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.form-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem}
+.img-preview{max-width:200px;max-height:200px;object-fit:cover;border:1px solid var(--border);margin-top:.5rem;display:none}
+.img-upload-area{border:2px dashed var(--border);padding:1.5rem;text-align:center;cursor:pointer;transition:border-color .3s;position:relative}
+.img-upload-area:hover{border-color:var(--accent)}
+.img-upload-area input[type="file"]{position:absolute;inset:0;opacity:0;cursor:pointer}
+.img-upload-area p{font-size:.82rem;color:var(--text-l)}
+.toast{position:fixed;bottom:2rem;right:2rem;z-index:300;background:var(--text);color:var(--bg);padding:.85rem 1.5rem;font-size:.82rem;opacity:0;transform:translateY(10px);transition:all .3s;pointer-events:none;max-width:400px}
+.toast.show{opacity:1;transform:translateY(0)}
+.toast.error{background:var(--danger)}
+.toast.success{background:var(--success)}
+.saving-overlay{display:none;position:fixed;inset:0;z-index:250;background:rgba(245,240,232,.85);backdrop-filter:blur(6px);justify-content:center;align-items:center;flex-direction:column;gap:1rem}
+.saving-overlay.active{display:flex}
+.saving-overlay p{font-size:1rem;color:var(--text)}
+.spinner{width:36px;height:36px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(43,107,59,.4)}50%{box-shadow:0 0 0 8px rgba(43,107,59,0)}}
+.btn-publish-pulse{animation:pulse 2s infinite}
+.sync-status{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;padding:.2rem .6rem;border-radius:2px;margin-left:.5rem}
+.sync-saved{background:var(--success);color:#fff}
+.sync-unsaved{background:#8B6914;color:#fff}
+.sync-error{background:var(--danger);color:#fff}
+.cat-tag{display:inline-flex;align-items:center;gap:.35rem;font-size:.72rem;letter-spacing:.06em;padding:.3rem .6rem;background:var(--bg);border:1px solid var(--border);color:var(--text);border-radius:2px}
+.cat-tag .cat-count{color:var(--text-l);font-size:.65rem}
+.cat-tag .cat-remove{background:none;border:none;color:var(--text-l);cursor:pointer;font-size:.9rem;line-height:1;padding:0 0 0 .2rem;transition:color .2s}
+.cat-tag .cat-remove:hover{color:var(--danger)}
+.room-pos-editor{position:relative;width:100%;aspect-ratio:16/10;border-radius:6px;overflow:hidden;background:#e0ddd6;cursor:crosshair;margin-top:.5rem;border:2px solid var(--border)}
+.room-pos-editor img.rpe-bg{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.room-pos-editor .rpe-painting{position:absolute;box-shadow:0 4px 16px rgba(0,0,0,.25);background:#fff;padding:2px;cursor:move;user-select:none;touch-action:none;transform-origin:center center}
+.room-pos-editor .rpe-painting img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.room-pos-editor .rpe-resize{position:absolute;bottom:-5px;right:-5px;width:14px;height:14px;background:var(--accent);border:2px solid #fff;cursor:nwse-resize;border-radius:2px;z-index:5}
+.room-pos-coords{font-size:.68rem;color:var(--text-l);margin-top:.35rem;font-family:monospace}
+.rpe-rotation-btns{display:flex;gap:.35rem;margin-top:.5rem;align-items:center}
+.rpe-rotation-btns label{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-l);margin-right:.25rem}
+.rpe-rot-btn{background:none;border:1px solid var(--border);color:var(--text);font-family:var(--body);font-size:.7rem;padding:.3rem .7rem;cursor:pointer;border-radius:2px;transition:all .2s;letter-spacing:.05em}
+.rpe-rot-btn:hover{border-color:var(--accent);color:var(--accent)}
+.rpe-rot-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+@media(max-width:768px){
+  .form-row,.form-row-3{grid-template-columns:1fr}
+  .admin-stats{grid-template-columns:1fr 1fr}
+  .works-table th:nth-child(1),.works-table td:nth-child(1),
+  .works-table th:nth-child(5),.works-table td:nth-child(5),
+  .works-table th:nth-child(6),.works-table td:nth-child(6),
+  .works-table th:nth-child(8),.works-table td:nth-child(8){display:none}
+  .admin-header{flex-direction:column;align-items:flex-start}
+  .admin-nav{flex-wrap:wrap;gap:.5rem}
+  .admin-nav-right{flex-wrap:wrap}
+}
+@media(max-width:480px){
+  .admin-stats{grid-template-columns:1fr}
+  .works-table th:nth-child(4),.works-table td:nth-child(4){display:none}
+}
+</style>
+</head>
+<body>
+
+<div id="loginScreen">
+  <h1>Admin</h1>
+  <p>Sign in to manage your artworks</p>
+  <p style="font-size:.78rem;color:var(--text-l);margin-top:-.5rem;margin-bottom:2rem">New accounts are created by invitation only.</p>
+  <button class="login-btn" id="loginBtn">Sign In</button>
+</div>
+
+<div id="adminPanel">
+  <nav class="admin-nav">
+    <div class="admin-nav-left">
+      <a href="/" class="admin-nav-logo">Maciej Kędzielski</a>
+      <span class="admin-nav-badge">Admin</span>
+      <span class="sync-status sync-saved" id="syncStatus">Synced</span>
+    </div>
+    <div class="admin-nav-right">
+      <a href="/" target="_blank">View Site</a>
+      <span id="userEmail" style="font-size:.78rem;color:var(--text-l)"></span>
+      <button class="btn-sm btn-outline-sm" onclick="logout()">Sign Out</button>
+    </div>
+  </nav>
+  <div class="admin-content">
+    <div class="admin-header">
+      <h2>Artwork Management</h2>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:center">
+        <button class="btn-sm btn-primary" onclick="openAddModal()">+ Add Artwork</button>
+        <button class="btn-sm btn-outline-sm" onclick="exportCSV()">&#8595; Export CSV</button>
+        <button class="btn-sm btn-success" id="publishBtn" onclick="publishChanges()" style="display:none">&#9650; Publish Changes <span id="changeCount"></span></button>
+      </div>
+    </div>
+    <div class="admin-stats" id="statsGrid"></div>
+
+    <!-- CATEGORY MANAGEMENT -->
+    <div style="background:var(--card);border:1px solid var(--border);padding:1.25rem;margin-bottom:1.5rem">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.75rem">
+        <h3 style="font-family:var(--display);font-weight:400;font-style:italic;font-size:1.1rem">Series / Categories</h3>
+      </div>
+      <div id="categoryList" style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.75rem"></div>
+      <div style="display:flex;gap:.4rem;max-width:360px">
+        <input type="text" id="mainNewCatInput" placeholder="New series name..." style="flex:1;padding:.45rem .7rem;font-size:.82rem;border:1px solid var(--border);background:var(--bg);font-family:var(--body);outline:none">
+        <button type="button" class="btn-sm btn-primary" style="padding:.45rem .8rem;font-size:.65rem" onclick="addCategoryFromMain()">+ Add</button>
+      </div>
+    </div>
+
+    <div style="margin-bottom:1rem">
+      <input type="text" id="searchInput" placeholder="Search artworks..." oninput="renderTable()" style="width:100%;max-width:320px;background:var(--card);border:1px solid var(--border);padding:.55rem .9rem;font-family:var(--body);font-size:.85rem;font-weight:300;color:var(--text);outline:none">
+    </div>
+    <div class="table-wrap">
+      <table class="works-table">
+        <thead><tr>
+          <th style="width:30px"></th><th></th><th>Title</th><th>Series</th><th>Dimensions</th><th>Price</th><th>Status</th><th>Home</th><th>Actions</th>
+        </tr></thead>
+        <tbody id="worksTableBody"></tbody>
+      </table>
+    </div>
+
+    <!-- EXHIBITIONS -->
+    <div style="margin-top:2.5rem;border-top:2px solid var(--border);padding-top:2rem">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem;flex-wrap:wrap;gap:.75rem">
+        <h2 style="font-family:var(--display);font-weight:300;font-style:italic;font-size:1.6rem">Exhibitions</h2>
+        <button class="btn-sm btn-primary" onclick="openExhModal()">+ Add Exhibition</button>
+      </div>
+      <div id="exhibitionsAdminList" style="display:grid;gap:.75rem"></div>
+    </div>
+  </div>
+</div>
+
+<!-- EXHIBITION MODAL -->
+<div class="modal-overlay" id="exhModal">
+  <div class="modal" style="max-width:500px">
+    <div class="modal-header">
+      <h3 id="exhModalTitle">Add Exhibition</h3>
+      <button class="modal-close" onclick="closeExhModal()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="exhEditId">
+      <div class="form-group"><label for="exhName">Exhibition Name</label><input type="text" id="exhName" placeholder="e.g. Margini di Pagina"></div>
+      <div class="form-group"><label for="exhVenue">Venue &amp; Location</label><input type="text" id="exhVenue" placeholder="e.g. Spazio Guido Tommasi Editore, Milan, Italy"></div>
+      <div class="form-row">
+        <div class="form-group"><label for="exhDateFrom">From</label><input type="date" id="exhDateFrom"></div>
+        <div class="form-group"><label for="exhDateTo">To</label><input type="date" id="exhDateTo"></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-sm btn-outline-sm" onclick="closeExhModal()">Cancel</button>
+      <button class="btn-sm btn-primary" onclick="saveExhibition()">Save Exhibition</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADD / EDIT MODAL -->
+<div class="modal-overlay" id="artworkModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="modalTitle">Add Artwork</h3>
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="editId">
+      <div class="form-group"><label for="artTitle">Title</label><input type="text" id="artTitle" placeholder="e.g. Untitled XIII"></div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="artCategory">Series</label>
+          <select id="artCategory"></select>
+          <div style="display:flex;gap:.4rem;margin-top:.3rem">
+            <input type="text" id="newCatInput" placeholder="New series..." style="flex:1;padding:.3rem .5rem;font-size:.78rem;border:1px solid var(--border);background:var(--card);font-family:var(--body);outline:none">
+            <button type="button" class="btn-sm btn-outline-sm" style="padding:.3rem .6rem;font-size:.65rem" onclick="addCategory()">+ Add</button>
+          </div>
+        </div>
+        <div class="form-group"><label for="artMedium">Medium</label><input type="text" id="artMedium" value="Acrylic on canvas"></div>
+      </div>
+      <div class="form-row-3">
+        <div class="form-group"><label for="artWidth">Width (cm)</label><input type="number" id="artWidth" step="1" placeholder="75"></div>
+        <div class="form-group"><label for="artHeight">Height (cm)</label><input type="number" id="artHeight" step="1" placeholder="50"></div>
+        <div class="form-group"><label for="artPrice">Price (&euro;)</label><input type="number" id="artPrice" step="1" placeholder="1330"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="artStatus">Status</label>
+          <select id="artStatus">
+            <option value="Available">Available</option>
+            <option value="Inquire">Price on application</option>
+            <option value="Sold">Sold</option>
+            <option value="Reserved">Reserved</option>
+          </select>
+        </div>
+        <div class="form-group"><label for="artOrder">Display Order</label><input type="number" id="artOrder" step="1" placeholder="1"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label for="artYear">Year</label><input type="number" id="artYear" step="1" placeholder="2025"></div>
+        <div class="form-group"><label for="artSerial">Serial Nr (optional)</label><input type="text" id="artSerial" placeholder="e.g. MK26-01"></div>
+      </div>
+      <div class="form-group" style="display:flex;align-items:center;gap:.6rem">
+        <input type="checkbox" id="artFeatured" style="width:auto;accent-color:var(--accent)">
+        <label for="artFeatured" style="margin:0;cursor:pointer">Show on Homepage (Recent Photographs)</label>
+      </div>
+
+      <!-- IMAGE: URL or upload -->
+      <div class="form-group">
+        <label>Image URL <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:.72rem;color:var(--text-l)">(paste Singulart or other direct image URL)</span></label>
+        <input type="text" id="artImageUrl" placeholder="https://www.singulart.com/images-sh/..." oninput="handleImageUrl(this.value)">
+      </div>
+      <div class="form-group">
+        <label>Or upload an image file</label>
+        <div class="img-upload-area" id="imgUploadArea">
+          <input type="file" id="artImage" accept="image/jpeg,image/png,image/webp" onchange="handleImageSelect(this)">
+          <p>Click or drag an image here<br><small>JPG/PNG/WebP, max 10 MB — auto-compressed to 1600px JPEG</small></p>
+        </div>
+        <img class="img-preview" id="imgPreview">
+        <input type="hidden" id="artImagePath">
+      </div>
+
+      <!-- ROOM POSITION EDITOR -->
+      <div class="form-group" id="roomPosGroup" style="display:none">
+        <label>Image Position in Room View</label>
+        <p style="font-size:.75rem;color:var(--text-l);margin-bottom:.5rem">Drag the photograph to position it. Drag the coloured handle to resize (proportions locked). Use rotation buttons if needed.</p>
+        <select id="roomPosRoom" onchange="updateRoomPosEditor()" style="width:100%;max-width:240px;padding:.4rem .6rem;font-size:.82rem;border:1px solid var(--border);background:var(--card);font-family:var(--body);outline:none;margin-bottom:.5rem"></select>
+        <div class="room-pos-editor" id="roomPosEditor">
+          <img class="rpe-bg" id="rpeBg" src="">
+          <div class="rpe-painting" id="rpePainting">
+            <img id="rpePaintingImg" src="">
+            <div class="rpe-resize" id="rpeResize"></div>
+          </div>
+        </div>
+        <div class="room-pos-coords" id="rpePosInfo">Position: — | Size: — | Rotation: 0°</div>
+        <div class="rpe-rotation-btns" id="rpeRotationBtns">
+          <label>Rotation:</label>
+          <button type="button" class="rpe-rot-btn active" data-rot="0" onclick="setRotation(0)">0°</button>
+          <button type="button" class="rpe-rot-btn" data-rot="90" onclick="setRotation(90)">90°</button>
+          <button type="button" class="rpe-rot-btn" data-rot="180" onclick="setRotation(180)">180°</button>
+          <button type="button" class="rpe-rot-btn" data-rot="270" onclick="setRotation(270)">270°</button>
+        </div>
+        <div style="display:flex;gap:.5rem;margin-top:.5rem">
+          <button type="button" class="btn-sm btn-outline-sm" onclick="resetRoomPos()">Reset to Default</button>
+          <button type="button" class="btn-sm btn-primary" onclick="saveAllRoomPositions()">Apply to All Rooms</button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="artDesc">Description <span id="charCount" style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--text-l)"></span></label>
+        <textarea id="artDesc" placeholder="Describe the work, its inspiration, and meaning..." oninput="updateCharCount()"></textarea>
+        <p style="font-size:.68rem;color:var(--text-l);margin-top:.25rem">Ideal: 150–300 characters for SEO</p>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-sm btn-outline-sm" onclick="closeModal()">Cancel</button>
+      <button class="btn-sm btn-primary" id="saveBtn" onclick="saveArtwork()">Save Artwork</button>
+    </div>
+  </div>
+</div>
+
+<!-- DELETE MODAL -->
+<div class="modal-overlay" id="deleteModal">
+  <div class="modal" style="max-width:420px">
+    <div class="modal-header">
+      <h3>Delete Artwork</h3>
+      <button class="modal-close" onclick="closeDeleteModal()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size:.92rem;color:var(--text-l)">Are you sure you want to delete <strong id="deleteTitle"></strong>?<br>The site will be republished automatically.</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-sm btn-outline-sm" onclick="closeDeleteModal()">Cancel</button>
+      <button class="btn-sm btn-danger" id="deleteBtn" onclick="confirmDelete()">Delete</button>
+    </div>
+  </div>
+</div>
+
+<!-- SAVING OVERLAY -->
+<div class="saving-overlay" id="savingOverlay">
+  <div class="spinner"></div>
+  <p id="savingMsg">Saving to repository...</p>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ============================================================
+// CONFIGURATION
+// ============================================================
+const GIT_API = '/.netlify/git/github';
+const WORKS_PATH = 'works.json';
+const EXHIBITIONS_PATH = 'exhibitions.json';
+const IMAGES_DIR = 'images';
+const BRANCH = 'main';
+
+let works = [];
+let exhibitionsSha = null;
+let worksSha = null;
+let deleteTargetId = null;
+let pendingImageFile = null;
+let pendingImageBase64 = null;
+let pendingChanges = 0;
+
+// ============================================================
+// GIT GATEWAY API HELPERS
+// ============================================================
+function getToken() {
+  const user = netlifyIdentity.currentUser();
+  if (!user) return null;
+  return user.jwt();
+}
+
+async function gitAPI(path, options = {}) {
+  const token = await getToken();
+  if (!token) throw new Error('Not authenticated');
+  const res = await fetch(GIT_API + path, {
+    ...options,
+    headers: { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json', ...(options.headers || {}) }
+  });
+  if (!res.ok) { const err = await res.text().catch(() => res.statusText); throw new Error('Git API error (' + res.status + '): ' + err); }
+  return res.json();
+}
+
+async function readFile(path) {
+  const data = await gitAPI('/contents/' + path + '?ref=' + BRANCH);
+  return { content: atob(data.content.replace(/\n/g, '')), sha: data.sha };
+}
+
+async function writeFile(path, content, message, sha) {
+  const body = { message, content: btoa(unescape(encodeURIComponent(content))), branch: BRANCH };
+  if (sha) body.sha = sha;
+  return gitAPI('/contents/' + path, { method: 'PUT', body: JSON.stringify(body) });
+}
+
+async function uploadBinaryFile(path, base64Data, message) {
+  let sha = null;
+  try { const existing = await gitAPI('/contents/' + path + '?ref=' + BRANCH); sha = existing.sha; } catch(e) {}
+  const body = { message, content: base64Data, branch: BRANCH };
+  if (sha) body.sha = sha;
+  return gitAPI('/contents/' + path, { method: 'PUT', body: JSON.stringify(body) });
+}
+
+// ============================================================
+// DATA MANAGEMENT
+// ============================================================
+async function loadWorks() {
+  try {
+    setSyncStatus('loading');
+    const file = await readFile(WORKS_PATH);
+    works = JSON.parse(file.content);
+    worksSha = file.sha;
+    renderAll();
+    setSyncStatus('saved');
+  } catch(e) {
+    try {
+      const res = await fetch('/works.json?' + Date.now());
+      if (res.ok) { works = await res.json(); renderAll(); setSyncStatus('saved'); showToast('Loaded works from deployed site', ''); }
+    } catch(e2) { works = []; renderAll(); setSyncStatus('error'); showToast('Could not load works data', 'error'); }
+  }
+}
+
+async function saveWorksToRepo(commitMessage) {
+  const json = JSON.stringify(works, null, 2);
+  try {
+    const result = await writeFile(WORKS_PATH, json, commitMessage, worksSha);
+    worksSha = result.content.sha;
+    setSyncStatus('saved'); pendingChanges = 0; updatePublishBtn(); return true;
+  } catch(e) { console.error('Failed to save works.json:', e); setSyncStatus('error'); showToast('Failed to save: ' + e.message, 'error'); return false; }
+}
+
+function markUnsaved() { markChanged(); }
+function markChanged() { pendingChanges++; setSyncStatus('unsaved'); updatePublishBtn(); }
+
+function updatePublishBtn() {
+  const btn = document.getElementById('publishBtn');
+  const cnt = document.getElementById('changeCount');
+  if (pendingChanges > 0) { btn.style.display = 'inline-block'; btn.classList.add('btn-publish-pulse'); cnt.textContent = '(' + pendingChanges + ')'; }
+  else { btn.style.display = 'none'; btn.classList.remove('btn-publish-pulse'); }
+}
+
+async function publishChanges() {
+  if (pendingChanges === 0) return;
+  document.getElementById('publishBtn').disabled = true;
+  showSaving('Publishing changes...');
+  try {
+    const okWorks = await saveWorksToRepo('Update artworks (' + pendingChanges + ' changes)');
+    if (window._pendingExhibitions !== undefined) { await saveExhibitionsToRepo(); }
+    if (okWorks) { showToast('All changes published! Site updating...', 'success'); }
+  } catch(e) { showToast('Publish failed: ' + e.message, 'error'); }
+  finally { document.getElementById('publishBtn').disabled = false; hideSaving(); }
+}
+
+async function saveExhibitionsToRepo() {
+  const json = JSON.stringify(window._pendingExhibitions || allExhibitions, null, 2);
+  try {
+    const result = await writeFile(EXHIBITIONS_PATH, json, 'Update exhibitions', exhibitionsSha);
+    exhibitionsSha = result.content.sha; window._pendingExhibitions = undefined; localStorage.removeItem('exh_draft');
+  } catch(e) { console.error('Failed to save exhibitions.json:', e); }
+}
+
+function exportCSV() {
+  const header = ['Title','Series','Medium','Width (cm)','Height (cm)','Price (EUR)','Status','Year','Serial Nr','Featured','Description'];
+  const rows = works.map(function(w) {
+    return ['"'+(w.title||'').replace(/"/g,'""')+'"','"'+(w.category||'').replace(/"/g,'""')+'"','"'+(w.medium||'').replace(/"/g,'""')+'"',
+      w.width||'',w.height||'',w.price||'',w.status||'',w.year||'','"'+(w.serial||'').replace(/"/g,'""')+'"',
+      w.featured?'Yes':'No','"'+(w.description||'').replace(/"/g,'""')+'"'].join(',');
+  });
+  const csv = [header.join(','),...rows].join('\n');
+  const blob = new Blob([csv],{type:'text/csv;charset=utf-8;'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'maciej-artworks.csv';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
+  showToast('CSV exported', 'success');
+}
+
+function slugify(t) { return t.toLowerCase().replace(/[^\w\s-]/g,'').replace(/\s+/g,'-').replace(/-+/g,'-').trim(); }
+function esc(s) { const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+async function toggleFeatured(id) {
+  const w = works.find(x => x.id === id);
+  if (!w) return;
+  if (!w.featured) { const fc = works.filter(x => x.featured).length; if (fc >= 12) { showToast('Maximum 12 works on homepage.', 'error'); return; } }
+  w.featured = !w.featured; renderAll(); markChanged();
+  const fc = works.filter(x => x.featured).length;
+  showToast(w.featured ? 'Marked for homepage (' + fc + '/12) — publish to apply' : 'Removed from homepage — publish to apply', 'success');
+}
+
+function changeStatus(id, newStatus) {
+  const w = works.find(x => x.id === id);
+  if (!w || w.status === newStatus) return;
+  w.status = newStatus;
+  if (newStatus === 'Sold' && w.featured) w.featured = false;
+  renderAll(); markChanged();
+  showToast(w.title + ' → ' + newStatus + ' — publish to apply', 'success');
+}
+
+// ============================================================
+// CATEGORIES
+// ============================================================
+const DEFAULT_CATEGORIES = ['Recent Work'];
+let customCategories = JSON.parse(localStorage.getItem('maciej_custom_cats') || '[]');
+
+function getCategories() {
+  var cats = new Set();
+  var removedDefaults = JSON.parse(localStorage.getItem('maciej_removed_cats') || '[]');
+  DEFAULT_CATEGORIES.forEach(function(c){ if (removedDefaults.indexOf(c) === -1) cats.add(c); });
+  customCategories.forEach(function(c){ cats.add(c); });
+  works.forEach(function(w){ if(w.category) cats.add(w.category); });
+  return Array.from(cats).sort();
+}
+
+function saveCustomCategories() { localStorage.setItem('maciej_custom_cats', JSON.stringify(customCategories)); }
+
+function populateCategorySelect(selectedValue) {
+  var sel = document.getElementById('artCategory'); if (!sel) return;
+  var cats = getCategories();
+  sel.innerHTML = cats.map(function(c){ return '<option value="'+c+'"'+(c===selectedValue?' selected':'')+'>'+c+'</option>'; }).join('');
+}
+
+function addCategory() {
+  var input = document.getElementById('newCatInput'); var name = (input.value || '').trim(); if (!name) return;
+  var cats = getCategories(); if (cats.indexOf(name) !== -1) { showToast('Series "'+name+'" already exists', 'error'); return; }
+  customCategories.push(name); saveCustomCategories(); input.value = ''; populateCategorySelect(name); renderCategoryList();
+  showToast('Series "'+name+'" added', 'success');
+}
+
+function addCategoryFromMain() {
+  var input = document.getElementById('mainNewCatInput'); var name = (input.value || '').trim(); if (!name) return;
+  var cats = getCategories(); if (cats.indexOf(name) !== -1) { showToast('Series "'+name+'" already exists', 'error'); return; }
+  customCategories.push(name); saveCustomCategories(); input.value = ''; renderCategoryList();
+  showToast('Series "'+name+'" added', 'success');
+}
+
+function removeCategory(cat) {
+  var usedBy = works.filter(function(w){ return w.category === cat; });
+  if (usedBy.length > 0) { showToast('Cannot delete "'+cat+'" — used by '+usedBy.length+' artwork(s)', 'error'); return; }
+  if (!confirm('Delete series "'+cat+'"?')) return;
+  customCategories = customCategories.filter(function(c){ return c !== cat; }); saveCustomCategories();
+  if (DEFAULT_CATEGORIES.indexOf(cat) !== -1) {
+    var removed = JSON.parse(localStorage.getItem('maciej_removed_cats') || '[]');
+    if (removed.indexOf(cat) === -1) removed.push(cat);
+    localStorage.setItem('maciej_removed_cats', JSON.stringify(removed));
+  }
+  renderCategoryList(); showToast('Series "'+cat+'" removed', 'success');
+}
+
+function renderCategoryList() {
+  var el = document.getElementById('categoryList'); if (!el) return;
+  var cats = getCategories();
+  el.innerHTML = cats.map(function(c){
+    var count = works.filter(function(w){ return w.category === c; }).length;
+    var removeBtn = (count === 0) ? '<button class="cat-remove" onclick="removeCategory(\''+c.replace(/'/g,"\\'")+'\')">×</button>' : '';
+    return '<span class="cat-tag">'+esc(c)+' <span class="cat-count">('+count+')</span>'+removeBtn+'</span>';
+  }).join('');
+}
+
+function updateCharCount() {
+  const len = (document.getElementById('artDesc').value || '').length;
+  const el = document.getElementById('charCount');
+  const color = len===0?'var(--text-l)':len<150?'#8B6914':len<=300?'var(--success)':'var(--danger)';
+  el.style.color = color; el.textContent = '(' + len + ' chars)';
+}
+
+window.addEventListener('beforeunload', function(e) {
+  if (pendingChanges > 0) { e.preventDefault(); e.returnValue = 'You have unpublished changes. Leave anyway?'; return e.returnValue; }
+});
+
+// ============================================================
+// SYNC STATUS
+// ============================================================
+function setSyncStatus(status) {
+  const el = document.getElementById('syncStatus');
+  if (status==='saved'){el.textContent='Synced';el.className='sync-status sync-saved';}
+  else if(status==='unsaved'){el.textContent='Unsaved';el.className='sync-status sync-unsaved';}
+  else if(status==='error'){el.textContent='Error';el.className='sync-status sync-error';}
+  else if(status==='loading'){el.textContent='Loading...';el.className='sync-status sync-unsaved';}
+}
+function showSaving(msg){document.getElementById('savingMsg').textContent=msg||'Saving to repository...';document.getElementById('savingOverlay').classList.add('active');}
+function hideSaving(){document.getElementById('savingOverlay').classList.remove('active');}
+
+// ============================================================
+// RENDERING
+// ============================================================
+function renderAll() { renderStats(); renderTable(); renderCategoryList(); }
+
+function renderStats() {
+  const total=works.length, avail=works.filter(w=>w.status==='Available').length,
+    reserved=works.filter(w=>w.status==='Reserved'||w.status==='Inquire').length,
+    sold=works.filter(w=>w.status==='Sold').length;
+  document.getElementById('statsGrid').innerHTML =
+    `<div class="stat-card"><div class="stat-number">${total}</div><div class="stat-label">Total Works</div></div>` +
+    `<div class="stat-card"><div class="stat-number">${avail}</div><div class="stat-label">Available</div></div>` +
+    `<div class="stat-card"><div class="stat-number">${reserved}</div><div class="stat-label">On Request</div></div>` +
+    `<div class="stat-card"><div class="stat-number">${sold}</div><div class="stat-label">Sold</div></div>`;
+}
+
+function renderTable() {
+  const searchTerm = (document.getElementById('searchInput')?.value || '').toLowerCase();
+  let sorted = [...works].sort((a,b)=>(a.order||99)-(b.order||99));
+  if (searchTerm) sorted = sorted.filter(w=>(w.title||'').toLowerCase().includes(searchTerm)||(w.category||'').toLowerCase().includes(searchTerm)||(w.status||'').toLowerCase().includes(searchTerm));
+  const tbody = document.getElementById('worksTableBody');
+  if (!sorted.length) {
+    tbody.innerHTML = '<tr><td colspan="9" style="text-align:center;padding:3rem;color:var(--text-l)">'+(searchTerm?'No results for "'+esc(searchTerm)+'"':'No artworks yet. Click "+ Add Artwork" to begin.')+'</td></tr>';
+    return;
+  }
+  // Fix image src: external URLs (http) used as-is, local paths prefixed with /
+  tbody.innerHTML = sorted.map((w,idx)=>{
+    const selClass=w.status==='Available'?'sel-available':w.status==='Sold'?'sel-sold':'sel-reserved';
+    const starClass=w.featured?'star on':'star off', starChar=w.featured?'&#9733;':'&#9734;';
+    const imgSrc = w.image ? (w.image.startsWith('http') ? w.image : '/'+w.image) : '/favicon.svg';
+    const priceDisplay = w.price ? '&euro;'+(w.price||0).toLocaleString() : '—';
+    return `<tr draggable="true" data-id="${w.id}" data-idx="${idx}">
+      <td><span class="drag-handle" title="Drag to reorder">&#9776;</span></td>
+      <td style="position:relative"><img class="thumb-sm" src="${imgSrc}" alt="${esc(w.title)}" onerror="this.src='/favicon.svg'" onmouseenter="showThumbPopup(event,'${imgSrc}')" onmouseleave="hideThumbPopup()"></td>
+      <td><strong style="font-family:var(--display);font-weight:400;font-style:italic">${esc(w.title)}</strong></td>
+      <td style="font-size:.82rem;color:var(--text-l)">${esc(w.category||'')}</td>
+      <td style="font-size:.82rem">${w.width||'?'} &times; ${w.height||'?'} cm</td>
+      <td style="font-family:var(--display);font-weight:500">${priceDisplay}</td>
+      <td><select class="status-select ${selClass}" onchange="changeStatus('${w.id}',this.value)">
+        <option value="Available"${w.status==='Available'?' selected':''}>Available</option>
+        <option value="Inquire"${w.status==='Inquire'?' selected':''}>On Request</option>
+        <option value="Reserved"${w.status==='Reserved'?' selected':''}>Reserved</option>
+        <option value="Sold"${w.status==='Sold'?' selected':''}>Sold</option>
+      </select></td>
+      <td><button class="${starClass}" onclick="toggleFeatured('${w.id}')" title="Show on Homepage">${starChar}</button></td>
+      <td><div class="table-actions">
+        <button class="btn-sm btn-outline-sm" onclick="openEditModal('${w.id}')">Edit</button>
+        <a class="btn-sm btn-outline-sm" href="/works/view.html?id=${encodeURIComponent(w.id)}" target="_blank" rel="noopener" style="text-decoration:none;display:inline-block" title="Live preview">&#128065;</a>
+        <button class="btn-sm btn-danger" onclick="openDeleteModal('${w.id}')">Del</button>
+      </div></td>
+    </tr>`;
+  }).join('');
+}
+
+// ============================================================
+// IMAGE HANDLING — URL or file upload
+// ============================================================
+function handleImageUrl(url) {
+  if (!url || !url.startsWith('http')) return;
+  const prev = document.getElementById('imgPreview');
+  prev.src = url; prev.style.display = 'block';
+  document.getElementById('artImagePath').value = url;
+  pendingImageFile = null; pendingImageBase64 = null;
+  // Detect real aspect ratio from loaded image
+  var tmpImg = new Image();
+  tmpImg.onload = function() {
+    window._adminImgRatio = tmpImg.naturalWidth / tmpImg.naturalHeight;
+    if (allRooms.length) {
+      document.getElementById('rpePaintingImg').src = url;
+      showRoomPosEditor({ room_positions: editingRoomPositions });
+    }
+  };
+  tmpImg.src = url;
+}
+
+function handleImageSelect(input) {
+  if (!input.files || !input.files[0]) return;
+  const file = input.files[0];
+  if (file.size > 10 * 1024 * 1024) { showToast('Image too large. Maximum 10 MB.', 'error'); input.value = ''; return; }
+  pendingImageFile = file; showToast('Compressing image...', '');
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const img = new Image();
+    img.onload = function() {
+      const MAX=1600; let w=img.width, h=img.height;
+      if (w>MAX||h>MAX){if(w>h){h=Math.round(h*MAX/w);w=MAX;}else{w=Math.round(w*MAX/h);h=MAX;}}
+      const canvas=document.createElement('canvas'); canvas.width=w; canvas.height=h;
+      canvas.getContext('2d').drawImage(img,0,0,w,h);
+      const compressed=canvas.toDataURL('image/jpeg',0.85);
+      const p=document.getElementById('imgPreview'); p.src=compressed; p.style.display='block';
+      pendingImageBase64=compressed.split(',')[1];
+      pendingImageFile={name:file.name.replace(/\.[^.]+$/,'.jpg')};
+      document.getElementById('artImageUrl').value = ''; // clear URL field
+      const size=Math.round(pendingImageBase64.length*3/4/1024);
+      window._adminImgRatio = w / h;
+      showToast('Image compressed to '+size+' KB ('+w+'×'+h+')', 'success');
+      if (allRooms.length) {
+        document.getElementById('rpePaintingImg').src=compressed;
+        showRoomPosEditor({room_positions:editingRoomPositions});
+      }
+    };
+    img.src=e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+async function uploadImage(file, base64) {
+  const safeName='img-'+Date.now()+'.jpg'; const path=IMAGES_DIR+'/'+safeName;
+  await uploadBinaryFile(path, base64, 'Add image: '+safeName);
+  return path;
+}
+
+// ============================================================
+// ADD / EDIT MODAL
+// ============================================================
+function openAddModal() {
+  document.getElementById('modalTitle').textContent='Add Artwork';
+  document.getElementById('editId').value='';
+  document.getElementById('artTitle').value='';
+  populateCategorySelect('Venetian Series');
+  document.getElementById('artMedium').value='Acrylic on canvas';
+  document.getElementById('artWidth').value='';
+  document.getElementById('artHeight').value='';
+  document.getElementById('artPrice').value='';
+  document.getElementById('artStatus').value='Available';
+  document.getElementById('artOrder').value=works.length+1;
+  document.getElementById('artDesc').value='';
+  document.getElementById('artImagePath').value='';
+  document.getElementById('artImageUrl').value='';
+  document.getElementById('artImage').value='';
+  document.getElementById('imgPreview').style.display='none';
+  document.getElementById('artFeatured').checked=false;
+  document.getElementById('artYear').value='';
+  document.getElementById('artSerial').value='';
+  pendingImageFile=null; pendingImageBase64=null; editingRoomPositions={}; window._adminImgRatio=null;
+  document.getElementById('roomPosGroup').style.display='none';
+  document.getElementById('artworkModal').classList.add('open');
+}
+
+function openEditModal(id) {
+  const w=works.find(x=>x.id===id); if(!w) return;
+  document.getElementById('modalTitle').textContent='Edit Artwork';
+  document.getElementById('editId').value=w.id;
+  document.getElementById('artTitle').value=w.title||'';
+  populateCategorySelect(w.category||'Venetian Series');
+  document.getElementById('artMedium').value=w.medium||'Acrylic on canvas';
+  document.getElementById('artWidth').value=w.width||'';
+  document.getElementById('artHeight').value=w.height||'';
+  document.getElementById('artPrice').value=w.price||'';
+  document.getElementById('artStatus').value=w.status||'Available';
+  document.getElementById('artOrder').value=w.order||1;
+  document.getElementById('artYear').value=w.year||'';
+  document.getElementById('artSerial').value=w.serial||'';
+  document.getElementById('artDesc').value=w.description||'';
+  document.getElementById('artImagePath').value=w.image||'';
+  document.getElementById('artFeatured').checked=!!w.featured;
+  const prev=document.getElementById('imgPreview');
+  // Handle both external URLs and local paths
+  if (w.image) {
+    const src = w.image.startsWith('http') ? w.image : '/'+w.image;
+    prev.src=src; prev.style.display='block';
+    if (w.image.startsWith('http')) document.getElementById('artImageUrl').value=w.image;
+    else document.getElementById('artImageUrl').value='';
+  } else { prev.style.display='none'; document.getElementById('artImageUrl').value=''; }
+  pendingImageFile=null; pendingImageBase64=null;
+  document.getElementById('artImage').value='';
+  if (w.image && allRooms.length) showRoomPosEditor(w);
+  else document.getElementById('roomPosGroup').style.display='none';
+  document.getElementById('artworkModal').classList.add('open');
+}
+
+function closeModal() {
+  document.getElementById('artworkModal').classList.remove('open');
+  pendingImageFile=null; pendingImageBase64=null;
+}
+
+async function saveArtwork() {
+  const title=document.getElementById('artTitle').value.trim();
+  const artWidth=document.getElementById('artWidth').value;
+  const artHeight=document.getElementById('artHeight').value;
+  const artPrice=document.getElementById('artPrice').value;
+  const artDesc=document.getElementById('artDesc').value.trim();
+  const editId=document.getElementById('editId').value;
+  const hasImage=!!(document.getElementById('artImagePath').value.trim()||(pendingImageFile&&pendingImageBase64));
+
+  if (!title){showToast('Title is required','error');return;}
+  if (!artWidth||parseFloat(artWidth)<=0){showToast('Width is required','error');return;}
+  if (!artHeight||parseFloat(artHeight)<=0){showToast('Height is required','error');return;}
+  if (!artDesc){showToast('Description is required','error');return;}
+  if (!editId&&!hasImage){showToast('Image (URL or file) is required','error');return;}
+
+  const id=editId||slugify(title);
+  if (!editId&&works.find(w=>w.id===id)){showToast('An artwork with a similar title already exists','error');return;}
+
+  document.getElementById('saveBtn').disabled=true;
+
+  try {
+    let imagePath=document.getElementById('artImagePath').value.trim();
+    if (pendingImageFile&&pendingImageBase64) { showSaving('Uploading image...'); imagePath=await uploadImage(pendingImageFile,pendingImageBase64); hideSaving(); }
+
+    const newOrder=parseInt(document.getElementById('artOrder').value)||works.length+1;
+    const priceVal = artPrice ? parseInt(artPrice) : null;
+
+    const data = {
+      id, title,
+      category: document.getElementById('artCategory').value,
+      medium: document.getElementById('artMedium').value,
+      width: parseFloat(artWidth)||0,
+      height: parseFloat(artHeight)||0,
+      price: priceVal,
+      status: document.getElementById('artStatus').value,
+      image: imagePath,
+      description: artDesc,
+      order: newOrder,
+      featured: document.getElementById('artFeatured').checked,
+      year: parseInt(document.getElementById('artYear').value)||null,
+      serial: document.getElementById('artSerial').value.trim()||null
+    };
+
+    if (Object.keys(editingRoomPositions).length>0) data.room_positions=editingRoomPositions;
+
+    if (editId) {
+      const idx=works.findIndex(w=>w.id===editId);
+      if (idx!==-1) {
+        if (!data.image&&works[idx].image) data.image=works[idx].image;
+        const oldOrder=works[idx].order||99;
+        works[idx]={...works[idx],...data};
+        if (oldOrder!==newOrder) reindexOrders(editId,newOrder);
+      }
+    } else { works.push(data); reindexOrders(id,newOrder); }
+
+    renderAll(); markChanged(); closeModal();
+    showToast(editId?'Artwork updated — publish to apply':'Artwork added — publish to apply','success');
+  } catch(e) { console.error('Save failed:',e); showToast('Save failed: '+e.message,'error'); }
+  finally { document.getElementById('saveBtn').disabled=false; }
+}
+
+function reindexOrders(movedId,targetOrder) {
+  var sorted=[...works].sort(function(a,b){return (a.order||99)-(b.order||99);});
+  sorted=sorted.filter(function(w){return w.id!==movedId;});
+  var movedWork=works.find(function(w){return w.id===movedId;});
+  var insertIdx=Math.max(0,Math.min(sorted.length,targetOrder-1));
+  sorted.splice(insertIdx,0,movedWork);
+  sorted.forEach(function(sw,i){var orig=works.find(function(w){return w.id===sw.id;});if(orig)orig.order=i+1;});
+}
+
+// ============================================================
+// DELETE
+// ============================================================
+function openDeleteModal(id){deleteTargetId=id;const w=works.find(x=>x.id===id);document.getElementById('deleteTitle').textContent=w?w.title:id;document.getElementById('deleteModal').classList.add('open');}
+function closeDeleteModal(){document.getElementById('deleteModal').classList.remove('open');deleteTargetId=null;}
+async function confirmDelete(){
+  if(!deleteTargetId)return;
+  const w=works.find(x=>x.id===deleteTargetId); const title=w?w.title:deleteTargetId;
+  works=works.filter(w=>w.id!==deleteTargetId); renderAll(); markChanged();
+  showToast('Artwork "'+title+'" removed — publish to apply','success'); closeDeleteModal();
+}
+
+// ============================================================
+// TOAST
+// ============================================================
+function showToast(msg,type){
+  const t=document.getElementById('toast'); t.textContent=msg; t.className='toast show'+(type?' '+type:'');
+  clearTimeout(t._timer); t._timer=setTimeout(()=>{t.className='toast';},5000);
+}
+
+// ============================================================
+// AUTH — NETLIFY IDENTITY
+// ============================================================
+const netlifyIdentity=window.netlifyIdentity;
+
+function initAuth(){
+  if(!netlifyIdentity){console.warn('Netlify Identity not loaded');document.getElementById('loginScreen').style.display='flex';return;}
+  netlifyIdentity.init();
+  netlifyIdentity.on('open',function(){
+    setTimeout(function(){
+      var iframe=document.querySelector('[data-netlify-identity-widget] iframe, iframe[src*="identity"]');
+      if(iframe&&iframe.contentDocument){var style=iframe.contentDocument.createElement('style');style.textContent='[data-testid="signup-tab"],[data-name="signup-tab"]{display:none!important}';iframe.contentDocument.head.appendChild(style);}
+    },300);
+  });
+  const user=netlifyIdentity.currentUser();
+  if(user){showAdmin(user.email);loadWorks();loadExhibitions();}
+  else{document.getElementById('loginScreen').style.display='flex';}
+  netlifyIdentity.on('login',function(u){showAdmin(u.email);loadWorks();loadExhibitions();netlifyIdentity.close();});
+  netlifyIdentity.on('logout',function(){document.getElementById('adminPanel').style.display='none';document.getElementById('loginScreen').style.display='flex';works=[];worksSha=null;});
+}
+
+function showAdmin(email){document.getElementById('loginScreen').style.display='none';document.getElementById('adminPanel').style.display='block';document.getElementById('userEmail').textContent=email||'';}
+function logout(){if(pendingChanges>0){if(!confirm('You have '+pendingChanges+' unpublished change(s). Sign out anyway?'))return;}if(netlifyIdentity)netlifyIdentity.logout();}
+
+document.getElementById('loginBtn').addEventListener('click',function(){if(netlifyIdentity)netlifyIdentity.open('login');});
+document.getElementById('artworkModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+document.getElementById('deleteModal').addEventListener('click',function(e){if(e.target===this)closeDeleteModal();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeModal();closeDeleteModal();}});
+
+// ============================================================
+// DRAG & DROP REORDERING
+// ============================================================
+let dragSrcId=null;
+document.getElementById('worksTableBody').addEventListener('dragstart',function(e){const tr=e.target.closest('tr');if(!tr)return;dragSrcId=tr.dataset.id;tr.classList.add('dragging');e.dataTransfer.effectAllowed='move';e.dataTransfer.setData('text/plain',dragSrcId);});
+document.getElementById('worksTableBody').addEventListener('dragend',function(e){const tr=e.target.closest('tr');if(tr)tr.classList.remove('dragging');document.querySelectorAll('.drag-over,.drag-below').forEach(function(el){el.classList.remove('drag-over','drag-below');});});
+document.getElementById('worksTableBody').addEventListener('dragover',function(e){e.preventDefault();e.dataTransfer.dropEffect='move';const tr=e.target.closest('tr');if(!tr||tr.dataset.id===dragSrcId)return;document.querySelectorAll('.drag-over,.drag-below').forEach(function(el){el.classList.remove('drag-over','drag-below');});var rect=tr.getBoundingClientRect();if(e.clientY<rect.top+rect.height/2)tr.classList.add('drag-over');else tr.classList.add('drag-below');});
+document.getElementById('worksTableBody').addEventListener('dragleave',function(e){const tr=e.target.closest('tr');if(tr){tr.classList.remove('drag-over');tr.classList.remove('drag-below');}});
+document.getElementById('worksTableBody').addEventListener('drop',function(e){
+  e.preventDefault();
+  var isBelow=!!e.target.closest('tr.drag-below');
+  document.querySelectorAll('.drag-over,.drag-below').forEach(function(el){el.classList.remove('drag-over','drag-below');});
+  const targetTr=e.target.closest('tr'); if(!targetTr||!dragSrcId)return;
+  const targetId=targetTr.dataset.id; if(targetId===dragSrcId)return;
+  const sorted=[...works].sort((a,b)=>(a.order||99)-(b.order||99));
+  const srcIdx=sorted.findIndex(w=>w.id===dragSrcId); var tgtIdx=sorted.findIndex(w=>w.id===targetId);
+  if(srcIdx===-1||tgtIdx===-1)return;
+  const [moved]=sorted.splice(srcIdx,1); tgtIdx=sorted.findIndex(w=>w.id===targetId);
+  if(isBelow)sorted.splice(tgtIdx+1,0,moved);else sorted.splice(tgtIdx,0,moved);
+  sorted.forEach(function(sw,i){const orig=works.find(function(w){return w.id===sw.id;});if(orig)orig.order=i+1;});
+  renderAll(); dragSrcId=null; markChanged(); showToast('Order updated — publish to apply','success');
+});
+
+// ============================================================
+// ROOM POSITION EDITOR
+// ============================================================
+let allRooms=[], currentRoomIdx=0, editingRoomPositions={};
+
+async function loadRooms(){try{const res=await fetch('/rooms.json?'+Date.now());if(res.ok)allRooms=await res.json();}catch(e){allRooms=[];}}
+loadRooms();
+
+function showRoomPosEditor(work){
+  const group=document.getElementById('roomPosGroup');
+  if(!allRooms.length){group.style.display='none';return;}
+  group.style.display='block';
+  editingRoomPositions=work.room_positions?JSON.parse(JSON.stringify(work.room_positions)):{};
+  const sel=document.getElementById('roomPosRoom');
+  sel.innerHTML=allRooms.map(function(r,i){return '<option value="'+i+'">'+r.name+'</option>';}).join('');
+  currentRoomIdx=0;
+  const imgSrc=document.getElementById('imgPreview').src||(work.image?(work.image.startsWith('http')?work.image:'/'+work.image):'');
+  document.getElementById('rpePaintingImg').src=imgSrc;
+  updateRoomPosEditor();
+}
+
+function getRoomPos(roomId){
+  if(editingRoomPositions[roomId])return editingRoomPositions[roomId];
+  var room=allRooms.find(function(r){return r.id===roomId;});
+  if(!room)return{x:50,y:30,scale:100,rotation:0};
+  return{x:room.wall_center_x,y:room.wall_center_y,scale:100,rotation:0};
+}
+
+function updateRoomPosEditor(){
+  var idx=parseInt(document.getElementById('roomPosRoom').value)||0; currentRoomIdx=idx;
+  var room=allRooms[idx]; if(!room)return;
+  document.getElementById('rpeBg').src='/'+room.image;
+  var pos=getRoomPos(room.id); var paintEl=document.getElementById('rpePainting');
+  var maxPct=room.max_painting_pct||30; var scaledPct=maxPct*(pos.scale/100);
+  // Prefer actual image dimensions over metadata
+  var artRatio = window._adminImgRatio || null;
+  if (!artRatio) {
+    var artW=parseFloat(document.getElementById('artWidth').value)||75;
+    var artH=parseFloat(document.getElementById('artHeight').value)||50;
+    artRatio = artW/artH;
+  }
+  var ratio=artRatio; var rotation=pos.rotation||0;
+  paintEl.style.left=pos.x+'%'; paintEl.style.top=pos.y+'%'; paintEl.style.width=scaledPct+'%';
+  paintEl.style.aspectRatio=ratio; paintEl.style.transform='translate(-50%,-50%) rotate('+rotation+'deg)';
+  document.querySelectorAll('.rpe-rot-btn').forEach(function(btn){btn.classList.toggle('active',parseInt(btn.dataset.rot)===rotation);});
+  updatePosInfo(pos,scaledPct);
+}
+
+function setRotation(deg){var room=allRooms[currentRoomIdx];if(!room)return;var pos=getRoomPos(room.id);pos.rotation=deg;editingRoomPositions[room.id]=pos;updateRoomPosEditor();}
+function updatePosInfo(pos,sizePct){document.getElementById('rpePosInfo').textContent='Position: X='+Math.round(pos.x)+'% Y='+Math.round(pos.y)+'% | Size: '+Math.round(pos.scale)+'% | Rotation: '+(pos.rotation||0)+'°';}
+function resetRoomPos(){var room=allRooms[currentRoomIdx];if(!room)return;delete editingRoomPositions[room.id];updateRoomPosEditor();showToast('Position reset for "'+room.name+'"','success');}
+function saveAllRoomPositions(){var room=allRooms[currentRoomIdx];if(!room)return;var pos=getRoomPos(room.id);allRooms.forEach(function(r){editingRoomPositions[r.id]={x:pos.x,y:pos.y,scale:pos.scale,rotation:pos.rotation||0};});showToast('Position applied to all rooms','success');}
+
+(function(){
+  var editor=document.getElementById('roomPosEditor'),paintEl=document.getElementById('rpePainting'),resizeEl=document.getElementById('rpeResize');
+  var dragging=false,resizing=false,startX,startY,startLeft,startTop,startWidth;
+  function getEditorRect(){return editor.getBoundingClientRect();}
+  function pxToPct(px,total){return(px/total)*100;}
+  paintEl.addEventListener('mousedown',function(e){if(e.target===resizeEl)return;e.preventDefault();dragging=true;startX=e.clientX;startY=e.clientY;startLeft=parseFloat(paintEl.style.left);startTop=parseFloat(paintEl.style.top);});
+  paintEl.addEventListener('touchstart',function(e){if(e.target===resizeEl)return;e.preventDefault();dragging=true;var t=e.touches[0];startX=t.clientX;startY=t.clientY;startLeft=parseFloat(paintEl.style.left);startTop=parseFloat(paintEl.style.top);},{passive:false});
+  resizeEl.addEventListener('mousedown',function(e){e.preventDefault();e.stopPropagation();resizing=true;startX=e.clientX;startWidth=paintEl.offsetWidth;});
+  resizeEl.addEventListener('touchstart',function(e){e.preventDefault();e.stopPropagation();resizing=true;startX=e.touches[0].clientX;startWidth=paintEl.offsetWidth;},{passive:false});
+  function onMove(cx,cy){
+    var rect=getEditorRect(); var room=allRooms[currentRoomIdx]; if(!room)return;
+    if(dragging){var dx=cx-startX,dy=cy-startY,newX=Math.max(5,Math.min(95,startLeft+pxToPct(dx,rect.width))),newY=Math.max(5,Math.min(95,startTop+pxToPct(dy,rect.height)));paintEl.style.left=newX+'%';paintEl.style.top=newY+'%';var pos=getRoomPos(room.id);pos.x=newX;pos.y=newY;editingRoomPositions[room.id]=pos;updatePosInfo(pos,(room.max_painting_pct||30)*(pos.scale/100));}
+    if(resizing){var dx=cx-startX,newW=Math.max(rect.width*0.05,Math.min(rect.width*0.60,startWidth+dx)),newPct=pxToPct(newW,rect.width),newScale=(newPct/(room.max_painting_pct||30))*100;paintEl.style.width=newPct+'%';var pos=getRoomPos(room.id);pos.scale=newScale;editingRoomPositions[room.id]=pos;updatePosInfo(pos,newPct);}
+  }
+  document.addEventListener('mousemove',function(e){if(dragging||resizing)onMove(e.clientX,e.clientY);});
+  document.addEventListener('touchmove',function(e){if(dragging||resizing){e.preventDefault();onMove(e.touches[0].clientX,e.touches[0].clientY);}},{passive:false});
+  document.addEventListener('mouseup',function(){dragging=false;resizing=false;});
+  document.addEventListener('touchend',function(){dragging=false;resizing=false;});
+})();
+
+// ============================================================
+// EXHIBITIONS MANAGEMENT
+// ============================================================
+var allExhibitions=[];
+function fmtDateAdmin(str){if(!str)return'';var d=new Date(str+'T12:00:00');return d.toLocaleDateString('en-GB',{month:'short',year:'numeric'});}
+
+function loadExhibitions(){
+  fetch('/exhibitions.json').then(function(r){return r.json();}).then(function(data){
+    allExhibitions=data||[];
+    var draft=localStorage.getItem('exh_draft');
+    if(draft){try{allExhibitions=JSON.parse(draft);}catch(e){}}
+    renderExhibitions();
+  }).catch(function(){allExhibitions=[];renderExhibitions();});
+}
+
+function renderExhibitions(){
+  var el=document.getElementById('exhibitionsAdminList'); if(!el)return;
+  if(!allExhibitions.length){el.innerHTML='<p style="color:var(--text-l);font-size:.88rem;padding:.5rem 0">No exhibitions yet.</p>';return;}
+  var sorted=allExhibitions.slice().sort(function(a,b){return(b.date_from||'').localeCompare(a.date_from||'');});
+  el.innerHTML=sorted.map(function(ex){
+    var dateStr=fmtDateAdmin(ex.date_from); if(ex.date_to)dateStr+=' &ndash; '+fmtDateAdmin(ex.date_to);
+    var origIdx=allExhibitions.indexOf(ex);
+    return '<div style="background:var(--card);border:1px solid var(--border);padding:.9rem 1.15rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap">'
+      +'<div style="flex:1;min-width:180px"><p style="font-family:var(--display);font-size:1.05rem;font-style:italic;margin-bottom:.1rem">'+ex.name+'</p>'
+      +'<p style="font-size:.82rem;color:var(--text-l);margin-bottom:.05rem">'+ex.venue+'</p>'
+      +'<p style="font-size:.75rem;color:var(--accent);letter-spacing:.06em">'+dateStr+'</p></div>'
+      +'<div style="display:flex;gap:.4rem;flex-shrink:0"><button class="btn-sm btn-outline-sm" onclick="editExhibition('+origIdx+')">Edit</button><button class="btn-sm btn-danger" onclick="deleteExhibition('+origIdx+')">Del</button></div>'
+      +'</div>';
+  }).join('');
+}
+
+function openExhModal(prefillIdx){
+  var isEdit=prefillIdx!==undefined;
+  document.getElementById('exhModalTitle').textContent=isEdit?'Edit Exhibition':'Add Exhibition';
+  document.getElementById('exhEditId').value=isEdit?String(prefillIdx):'';
+  var ex=isEdit?allExhibitions[prefillIdx]:{};
+  document.getElementById('exhName').value=ex.name||'';
+  document.getElementById('exhVenue').value=ex.venue||'';
+  document.getElementById('exhDateFrom').value=ex.date_from||'';
+  document.getElementById('exhDateTo').value=ex.date_to||'';
+  document.getElementById('exhModal').classList.add('open');
+}
+function closeExhModal(){document.getElementById('exhModal').classList.remove('open');}
+function editExhibition(i){openExhModal(i);}
+function deleteExhibition(i){if(!confirm('Delete "'+allExhibitions[i].name+'"?'))return;allExhibitions.splice(i,1);renderExhibitions();persistExhibitions();}
+function saveExhibition(){
+  var idxStr=document.getElementById('exhEditId').value;
+  var name=document.getElementById('exhName').value.trim();
+  if(!name){showToast('Exhibition name is required','error');return;}
+  var ex={
+    id:(idxStr!==''&&allExhibitions[parseInt(idxStr)])?allExhibitions[parseInt(idxStr)].id:('exh-'+Date.now()),
+    name,venue:document.getElementById('exhVenue').value.trim(),
+    date_from:document.getElementById('exhDateFrom').value,
+    date_to:document.getElementById('exhDateTo').value
+  };
+  if(idxStr!=='')allExhibitions[parseInt(idxStr)]=ex;else allExhibitions.push(ex);
+  closeExhModal();renderExhibitions();persistExhibitions();showToast('Exhibition saved','success');
+}
+function persistExhibitions(){localStorage.setItem('exh_draft',JSON.stringify(allExhibitions));markUnsaved();window._pendingExhibitions=allExhibitions;}
+
+// Init
+initAuth();
+</script>
+
+<div id="thumbPopup" class="thumb-popup"></div>
+<script>
+function showThumbPopup(e,src){var p=document.getElementById('thumbPopup');p.style.backgroundImage='url('+src+')';p.style.display='block';posThumbPopup(e);}
+function posThumbPopup(e){var p=document.getElementById('thumbPopup');var x=e.clientX+14,y=e.clientY-110;if(x+230>window.innerWidth)x=e.clientX-234;if(y<8)y=8;p.style.left=x+'px';p.style.top=y+'px';}
+function hideThumbPopup(){document.getElementById('thumbPopup').style.display='none';}
+document.addEventListener('mousemove',function(e){var p=document.getElementById('thumbPopup');if(p&&p.style.display==='block')posThumbPopup(e);});
+</script>
+</body>
+</html>
