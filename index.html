@@ -65,9 +65,9 @@ a img,button img{pointer-events:auto}
 .mobile-close{position:absolute;top:1.25rem;right:var(--g);background:none;border:none;font-size:2rem;color:var(--bg);cursor:pointer;z-index:111;line-height:1}
 
 /* ── HERO ── */
-.hero{height:100vh;min-height:600px;position:relative;overflow:hidden;display:flex;align-items:flex-end;background:var(--dark)}
-.hero-img{position:absolute;inset:-2%;z-index:0}
-.hero-img img{width:104%;height:104%;object-fit:cover;object-position:center center;display:block;filter:brightness(.92)}
+.hero{height:100vh;min-height:600px;position:relative;overflow:hidden;display:flex;align-items:flex-end;background:#000}
+.hero-img{position:absolute;inset:0;z-index:0}
+.hero-img img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;display:block;filter:brightness(.92)}
 .hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(to top, rgba(17,17,16,.75) 0%, rgba(17,17,16,.2) 50%, transparent 100%)}
 .hero-content{position:relative;z-index:2;padding:0 var(--g) clamp(2.5rem,6vw,5rem);width:100%;max-width:var(--max-w);margin:0 auto}
 .hero-label{font-family:var(--display);font-size:.65rem;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--accent-l);margin-bottom:1.2rem;display:block;text-shadow:0 1px 8px rgba(0,0,0,.6),0 0 2px rgba(0,0,0,.8)}
@@ -129,14 +129,19 @@ a img,button img{pointer-events:auto}
 .approach-quote{font-family:var(--display);font-size:clamp(1.4rem,3vw,2.2rem);font-weight:700;line-height:1.2;letter-spacing:-.01em;text-transform:uppercase;margin-bottom:2rem;color:var(--text)}
 
 /* ── PRINTIFY OVERLAY ── */
-.printify-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(17,17,16,.88);backdrop-filter:blur(10px);justify-content:center;align-items:center;padding:1rem}
+.printify-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(17,17,16,.92);backdrop-filter:blur(14px);justify-content:center;align-items:center;padding:1.5rem}
 .printify-overlay.open{display:flex}
-.printify-modal{background:#111;width:100%;max-width:1200px;height:90vh;position:relative;border-radius:2px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.6)}
-.printify-modal-close{position:absolute;top:.85rem;right:.85rem;z-index:10;background:var(--dark);color:rgba(249,246,241,.7);border:1px solid rgba(249,246,241,.15);width:40px;height:40px;cursor:pointer;font-size:1.3rem;display:flex;align-items:center;justify-content:center;border-radius:2px;transition:all .3s;line-height:1}
-.printify-modal-close:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
-.printify-iframe{width:100%;height:100%;border:none;display:block}
-.printify-loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#111;color:rgba(249,246,241,.3);font-family:var(--display);font-size:.75rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;pointer-events:none;transition:opacity .3s}
-.printify-loading.hidden{opacity:0}
+.printify-modal{background:var(--dark);border:1px solid rgba(249,246,241,.1);width:100%;max-width:560px;padding:3rem;position:relative;box-shadow:0 32px 80px rgba(0,0,0,.6)}
+.printify-modal-close{position:absolute;top:1rem;right:1rem;background:none;color:rgba(249,246,241,.4);border:none;width:36px;height:36px;cursor:pointer;font-size:1.4rem;display:flex;align-items:center;justify-content:center;transition:color .3s;line-height:1}
+.printify-modal-close:hover{color:var(--accent)}
+.printify-shop-label{font-family:var(--display);font-size:.6rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--accent);margin-bottom:1.25rem}
+.printify-shop-title{font-family:var(--display);font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;text-transform:uppercase;letter-spacing:-.02em;color:#F9F6F1;line-height:.95;margin-bottom:1.5rem}
+.printify-shop-desc{font-size:.88rem;color:rgba(249,246,241,.5);line-height:1.7;margin-bottom:2rem}
+.printify-shop-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2.5rem}
+.printify-shop-tag{font-family:var(--display);font-size:.58rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:.35rem .8rem;border:1px solid rgba(249,246,241,.15);color:rgba(249,246,241,.4)}
+.printify-shop-btn{display:block;width:100%;text-align:center;background:var(--accent);color:#fff;font-family:var(--display);font-size:.78rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:1.1rem 2rem;text-decoration:none;transition:background .3s;cursor:pointer;border:none}
+.printify-shop-btn:hover{background:#a84a2e}
+.printify-shop-note{text-align:center;margin-top:1rem;font-size:.7rem;color:rgba(249,246,241,.25)}
 
 /* ── WEAR THE WORK (Printify) ── */
 .wear{background:var(--dark);padding:clamp(5rem,10vw,9rem) var(--g)}
@@ -236,8 +241,11 @@ a img,button img{pointer-events:auto}
   /* Wear */
   .wear-inner{grid-template-columns:1fr}
   .wear-preview{display:none}
-  .wear-title{font-size:clamp(2rem,10vw,3.5rem)}
+  .wear{padding:clamp(3.5rem,8vw,6rem) var(--g)}
+  .wear-title{font-size:clamp(1.8rem,8vw,3rem);line-height:1;word-break:break-word}
+  .wear-body{font-size:.88rem}
   .wear-items{gap:.4rem}
+  .wear-item{font-size:.6rem;padding:.35rem .7rem}
   /* Exhibitions */
   .exh-item{grid-template-columns:1fr;gap:.3rem}.exh-tag{display:none}
   /* Contact */
@@ -257,7 +265,8 @@ a img,button img{pointer-events:auto}
   .about-fact-num{font-size:1.5rem}
   .btn{padding:.8rem 1.6rem;font-size:.68rem}
   .approach-cols{gap:2rem}
-  .wear-items .wear-item{font-size:.58rem;padding:.35rem .7rem}
+  .wear-title{font-size:clamp(1.6rem,7vw,2.5rem)}
+  .wear-items .wear-item{font-size:.56rem;padding:.3rem .6rem}
   .featured-top{margin-bottom:1.5rem}
 }
 </style>
@@ -425,16 +434,20 @@ a img,button img{pointer-events:auto}
 <!-- PRINTIFY OVERLAY -->
 <div class="printify-overlay" id="printifyOverlay">
   <div class="printify-modal">
-    <button class="printify-modal-close" onclick="closePrintifyShop()" aria-label="Close shop">&times;</button>
-    <div class="printify-loading" id="printifyLoading">Loading shop…</div>
-    <iframe
-      class="printify-iframe"
-      id="printifyIframe"
-      src=""
-      title="Maciej Kędzielski — Wear the Work"
-      loading="lazy"
-      onload="document.getElementById('printifyLoading').classList.add('hidden')"
-    ></iframe>
+    <button class="printify-modal-close" onclick="closePrintifyShop()">&times;</button>
+    <p class="printify-shop-label">Wear the Work — Shop</p>
+    <h2 class="printify-shop-title">Art on<br>Everything</h2>
+    <p class="printify-shop-desc">T-shirts, hoodies, posters, tote bags, phone cases, mugs and more — each printed on demand with Maciej Kędzielski's paintings.</p>
+    <div class="printify-shop-tags">
+      <span class="printify-shop-tag">T-shirts</span>
+      <span class="printify-shop-tag">Hoodies</span>
+      <span class="printify-shop-tag">Posters</span>
+      <span class="printify-shop-tag">Tote Bags</span>
+      <span class="printify-shop-tag">Phone Cases</span>
+      <span class="printify-shop-tag">Mugs</span>
+    </div>
+    <a href="https://maciej-kedzielski.printify.me" target="_blank" rel="noopener" class="printify-shop-btn" onclick="closePrintifyShop()">Enter the Shop →</a>
+    <p class="printify-shop-note">Opens in a new tab · Powered by Printify</p>
   </div>
 </div>
 
@@ -572,34 +585,17 @@ fetch('exhibitions.json').then(function(r){return r.json();}).then(function(exhs
 
 
 
-// Printify overlay — iframe loaded lazily on open
-var PRINTIFY_URL = 'https://maciej-kedzielski.printify.me';
+// Printify overlay
 function openPrintifyShop(){
-  var overlay = document.getElementById('printifyOverlay');
-  var iframe = document.getElementById('printifyIframe');
-  var loading = document.getElementById('printifyLoading');
-  // Load iframe only on first open
-  if(!iframe.src || iframe.src === window.location.href){
-    loading.classList.remove('hidden');
-    iframe.src = PRINTIFY_URL;
-  }
-  overlay.style.display = 'flex';
-  requestAnimationFrame(function(){ overlay.style.opacity='1'; });
-  document.body.style.overflow = 'hidden';
+  document.getElementById('printifyOverlay').style.display='flex';
+  document.body.style.overflow='hidden';
 }
 function closePrintifyShop(){
-  var overlay = document.getElementById('printifyOverlay');
-  overlay.style.display = 'none';
-  document.body.style.overflow = '';
+  document.getElementById('printifyOverlay').style.display='none';
+  document.body.style.overflow='';
 }
-// Close on backdrop click
-document.addEventListener('click', function(e){
-  if(e.target && e.target.id === 'printifyOverlay') closePrintifyShop();
-});
-// Close on Escape
-document.addEventListener('keydown', function(e){
-  if(e.key === 'Escape') closePrintifyShop();
-});
+document.addEventListener('click',function(e){if(e.target&&e.target.id==='printifyOverlay')closePrintifyShop();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closePrintifyShop();});
 
 // Contact form session prefill
 (function(){
