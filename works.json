@@ -2,181 +2,649 @@
   {
     "id": "untitled-i",
     "title": "Untitled I",
-    "year": "2026",
+    "year": 2026,
     "medium": "Acrylic on canvas",
     "width": 70,
     "height": 50,
-    "price": "1,000",
+    "price": 1000,
     "status": "Available",
     "category": "Recent Work",
     "featured": true,
     "description": "A layered composition in terracotta, olive and sky blue. Bold gestural strokes build and dissolve across the surface, the marks accumulating into a landscape of pure feeling.",
     "image": "images/works/work-01.jpg",
-    "order": 1
+    "order": 1,
+    "serial": null,
+    "room_positions": {
+      "living-minimal": {
+        "x": 50.23809523809524,
+        "y": 30,
+        "scale": 80.27210884353741,
+        "rotation": 0
+      },
+      "living-marble": {
+        "x": 61.66663015873016,
+        "y": 34.0635,
+        "scale": 76.71957671957672,
+        "rotation": 0
+      },
+      "living-grey": {
+        "x": 54.53968253968254,
+        "y": 38.41269841269841,
+        "scale": 93.12169312169313,
+        "rotation": 0
+      },
+      "studio-leather": {
+        "x": 42.317460317460316,
+        "y": 32.06349206349206,
+        "scale": 78.86904761904762,
+        "rotation": 0
+      },
+      "gallery-gold": {
+        "x": 50.63492063492063,
+        "y": 34.53968253968254,
+        "scale": 85.63074352548036,
+        "rotation": 0
+      },
+      "bedroom-wood": {
+        "x": 51.111111111111114,
+        "y": 31.349206349206348,
+        "scale": 100,
+        "rotation": 0
+      }
+    }
   },
   {
     "id": "untitled-ii",
     "title": "Untitled II",
-    "year": "2026",
+    "year": 2026,
     "medium": "Acrylic on canvas",
     "width": 70,
     "height": 50,
-    "price": "1,000",
+    "price": 1000,
     "status": "Available",
     "category": "Recent Work",
     "featured": true,
     "description": "Deep greens and earth tones collide with passages of raw pink and burgundy. The painting moves between density and breath, between structure and release.",
     "image": "images/works/work-02.jpg",
-    "order": 2
+    "order": 2,
+    "serial": null,
+    "room_positions": {
+      "living-minimal": {
+        "x": 50.714285714285715,
+        "y": 32.79365079365079,
+        "scale": 88.43537414965986,
+        "rotation": 0
+      },
+      "living-marble": {
+        "x": 64.20633492063492,
+        "y": 38.63496984126984,
+        "scale": 81.48148148148148,
+        "rotation": 0
+      },
+      "living-grey": {
+        "x": 54.22222222222222,
+        "y": 38.920634920634924,
+        "scale": 85.71428571428571,
+        "rotation": 0
+      },
+      "studio-leather": {
+        "x": 42,
+        "y": 33.079365079365076,
+        "scale": 86.80555555555556,
+        "rotation": 0
+      },
+      "gallery-gold": {
+        "x": 50,
+        "y": 33.01587301587301,
+        "scale": 90.64327485380117,
+        "rotation": 0
+      },
+      "bedroom-wood": {
+        "x": 50.476190476190474,
+        "y": 32.61904761904762,
+        "scale": 100,
+        "rotation": 0
+      }
+    }
   },
   {
     "id": "untitled-iii",
     "title": "Untitled III",
-    "year": "2026",
+    "year": 2026,
     "medium": "Acrylic on canvas",
     "width": 70,
     "height": 50,
-    "price": "1,000",
+    "price": 1000,
     "status": "Available",
     "category": "Recent Work",
     "featured": true,
     "description": "Sweeping gestures in black, forest green and grey-white animate the surface. Energy moves across the canvas in rhythm with the artist's own physical momentum.",
     "image": "images/works/work-03.jpg",
-    "order": 3
+    "order": 3,
+    "serial": null,
+    "room_positions": {
+      "living-minimal": {
+        "x": 50.079365079365076,
+        "y": 35.58730158730159,
+        "scale": 92.51700680272108,
+        "rotation": 0
+      },
+      "living-marble": {
+        "x": 64.36507936507937,
+        "y": 35.58730158730159,
+        "scale": 95.23809523809523,
+        "rotation": 0
+      },
+      "living-grey": {
+        "x": 55.17460317460318,
+        "y": 37.14285714285714,
+        "scale": 100,
+        "rotation": 0
+      },
+      "studio-leather": {
+        "x": 42.15873015873016,
+        "y": 34.6031746031746,
+        "scale": 93.25396825396825,
+        "rotation": 0
+      },
+      "gallery-gold": {
+        "x": 50,
+        "y": 35.55555555555556,
+        "scale": 85.21303258145363,
+        "rotation": 0
+      },
+      "bedroom-wood": {
+        "x": 50.63492063492063,
+        "y": 30.58730158730159,
+        "scale": 94.6031746031746,
+        "rotation": 0
+      }
+    }
   },
   {
     "id": "untitled-iv",
     "title": "Untitled IV",
-    "year": "2026",
+    "year": 2026,
     "medium": "Acrylic on canvas",
     "width": 70,
     "height": 50,
-    "price": "1,000",
+    "price": 1000,
     "status": "Available",
     "category": "Recent Work",
     "featured": false,
     "description": "A warm field of ochre and salmon is interrupted by assertive passages of blue and dark brown. Tension and equilibrium held in perfect suspension.",
     "image": "images/works/work-04.jpg",
-    "order": 4
+    "order": 4,
+    "serial": null,
+    "room_positions": {
+      "living-minimal": {
+        "x": 50.079365079365076,
+        "y": 33.04761904761905,
+        "scale": 83.4467120181406,
+        "rotation": 0
+      },
+      "living-marble": {
+        "x": 64.84126984126983,
+        "y": 36.0952,
+        "scale": 86.77248677248677,
+        "rotation": 0
+      },
+      "living-grey": {
+        "x": 54.38095238095238,
+        "y": 37.65079365079365,
+        "scale": 88.8888888888889,
+        "rotation": 0
+      },
+      "studio-leather": {
+        "x": 42,
+        "y": 34.34920634920635,
+        "scale": 92.26190476190477,
+        "rotation": 0
+      },
+      "gallery-gold": {
+        "x": 50,
+        "y": 36.317460317460316,
+        "scale": 84.7953216374269,
+        "rotation": 0
+      },
+      "bedroom-wood": {
+        "x": 51.42857142857143,
+        "y": 32.61904761904762,
+        "scale": 93.96825396825396,
+        "rotation": 0
+      }
+    }
   },
   {
     "id": "untitled-v",
     "title": "Untitled V",
-    "year": "2026",
+    "year": 2026,
     "medium": "Acrylic on canvas",
     "width": 70,
     "height": 50,
-    "price": "1,000",
+    "price": 1000,
     "status": "Available",
     "category": "Recent Work",
     "featured": false,
     "description": "Loosely interlocking forms in a tightly compressed palette. The mark-making is decisive and immediate, leaving no room for revision.",
     "image": "images/works/work-05.jpg",
-    "order": 5
+    "order": 5,
+    "serial": null,
+    "room_positions": {
+      "living-minimal": {
+        "x": 50.3968253968254,
+        "y": 33.55555555555556,
+        "scale": 85.26077097505669,
+        "rotation": 0
+      },
+      "living-marble": {
+        "x": 64.99995873015874,
+        "y": 35.84129206349206,
+        "scale": 89.94708994708994,
+        "rotation": 0
+      },
+      "living-grey": {
+        "x": 55.01587301587301,
+        "y": 35.87301587301587,
+        "scale": 84.65608465608466,
+        "rotation": 0
+      },
+      "studio-leather": {
+        "x": 41.84126984126984,
+        "y": 33.58730158730159,
+        "scale": 88.29365079365078,
+        "rotation": 0
+      },
+      "gallery-gold": {
+        "x": 50.15873015873016,
+        "y": 36.317460317460316,
+        "scale": 91.0609857978279,
+        "rotation": 0
+      },
+      "bedroom-wood": {
+        "x": 50.63492063492063,
+        "y": 32.36507936507937,
+        "scale": 95.87301587301587,
+        "rotation": 0
+      }
+    }
   },
   {
     "id": "untitled-vi",
     "title": "Untitled VI",
-    "year": "2026",
+    "year": 2026,
     "medium": "Acrylic on canvas",
     "width": 50,
     "height": 70,
-    "price": "1,000",
+    "price": 1000,
     "status": "Available",
     "category": "Recent Work",
     "featured": false,
     "description": "A vertical composition in orange, teal and violet. The painting unfolds from bottom to top in a sequence of interlocking planes that recall both architecture and landscape.",
     "image": "images/works/work-06.jpg",
-    "order": 6
+    "order": 6,
+    "serial": null,
+    "room_positions": {
+      "living-minimal": {
+        "x": 49.6031746031746,
+        "y": 31.523809523809526,
+        "scale": 56.68934240362812,
+        "rotation": 0
+      },
+      "living-marble": {
+        "x": 63.73015873015873,
+        "y": 34.57142857142857,
+        "scale": 60.84656084656085,
+        "rotation": 0
+      },
+      "living-grey": {
+        "x": 54.698412698412696,
+        "y": 35.87301587301587,
+        "scale": 62.96296296296296,
+        "rotation": 0
+      },
+      "studio-leather": {
+        "x": 43.26984126984127,
+        "y": 35.36507936507937,
+        "scale": 63.988095238095234,
+        "rotation": 0
+      },
+      "gallery-gold": {
+        "x": 50.476190476190474,
+        "y": 36.06349206349206,
+        "scale": 55.55555555555556,
+        "rotation": 0
+      },
+      "bedroom-wood": {
+        "x": 51.111111111111114,
+        "y": 31.095238095238095,
+        "scale": 64.12698412698413,
+        "rotation": 0
+      }
+    }
   },
   {
     "id": "untitled-vii",
     "title": "Untitled VII",
-    "year": "2026",
+    "year": 2026,
     "medium": "Acrylic on canvas",
     "width": 70,
     "height": 50,
-    "price": "1,000",
+    "price": 1000,
     "status": "Available",
     "category": "Recent Work",
     "featured": false,
     "description": "Sky blue and chartreuse anchor a composition that opens outward from a dense centre. Movement is the subject and the method simultaneously.",
     "image": "images/works/work-07.jpg",
-    "order": 7
+    "order": 7,
+    "serial": null,
+    "room_positions": {
+      "living-minimal": {
+        "x": 49.76190476190476,
+        "y": 39.14285714285714,
+        "scale": 80.27210884353741,
+        "rotation": 0
+      },
+      "living-marble": {
+        "x": 64.36507936507937,
+        "y": 36.095238095238095,
+        "scale": 83.06878306878306,
+        "rotation": 0
+      },
+      "living-grey": {
+        "x": 54.53968253968254,
+        "y": 39.42857142857143,
+        "scale": 83.5978835978836,
+        "rotation": 0
+      },
+      "studio-leather": {
+        "x": 42,
+        "y": 36.12698412698413,
+        "scale": 82.34126984126985,
+        "rotation": 0
+      },
+      "gallery-gold": {
+        "x": 50.476190476190474,
+        "y": 36.82540476190476,
+        "scale": 83.95989974937342,
+        "rotation": 0
+      },
+      "bedroom-wood": {
+        "x": 50.95238095238095,
+        "y": 31.603174603174605,
+        "scale": 92.06349206349206,
+        "rotation": 0
+      }
+    }
   },
   {
     "id": "untitled-viii",
     "title": "Untitled VIII",
-    "year": "2026",
+    "year": 2026,
     "medium": "Acrylic on canvas",
     "width": 70,
     "height": 50,
-    "price": "1,000",
+    "price": 1000,
     "status": "Available",
     "category": "Recent Work",
     "featured": false,
     "description": "A sparer composition with concentrated energy. The reduced number of marks heightens the presence of each one, making the silence as important as the paint.",
     "image": "images/works/work-08.jpg",
-    "order": 8
+    "order": 8,
+    "serial": null,
+    "room_positions": {
+      "living-minimal": {
+        "x": 48.96825396825397,
+        "y": 36.095238095238095,
+        "scale": 89.79591836734694,
+        "rotation": 0
+      },
+      "living-marble": {
+        "x": 64.0476,
+        "y": 33.55553650793651,
+        "scale": 95.76719576719576,
+        "rotation": 0
+      },
+      "living-grey": {
+        "x": 53.74603174603175,
+        "y": 34.85714285714286,
+        "scale": 86.77248677248677,
+        "rotation": 0
+      },
+      "studio-leather": {
+        "x": 42,
+        "y": 35.111111111111114,
+        "scale": 87.79761904761905,
+        "rotation": 0
+      },
+      "gallery-gold": {
+        "x": 50,
+        "y": 36.82539682539682,
+        "scale": 85.21303258145363,
+        "rotation": 0
+      },
+      "bedroom-wood": {
+        "x": 50.79365079365079,
+        "y": 31.603174603174605,
+        "scale": 100,
+        "rotation": 0
+      }
+    }
   },
   {
     "id": "untitled-ix",
     "title": "Untitled IX",
-    "year": "2025",
+    "year": 2025,
     "medium": "Acrylic on canvas",
     "width": 70,
     "height": 50,
-    "price": "1,000",
+    "price": 1000,
     "status": "Available",
     "category": "Recent Work",
     "featured": false,
     "description": "Warm ochre ground beneath layered passages of cooler tones. The painting reveals itself slowly, each reading uncovering a new spatial relationship.",
     "image": "images/works/work-09.jpg",
-    "order": 9
+    "order": 9,
+    "serial": null,
+    "room_positions": {
+      "living-minimal": {
+        "x": 50.079365079365076,
+        "y": 35.333333333333336,
+        "scale": 84.35374149659864,
+        "rotation": 0
+      },
+      "living-marble": {
+        "x": 64.5238492063492,
+        "y": 37.3651,
+        "scale": 93.12169312169313,
+        "rotation": 0
+      },
+      "living-grey": {
+        "x": 55.01587301587301,
+        "y": 40.44444444444444,
+        "scale": 82.010582010582,
+        "rotation": 0
+      },
+      "studio-leather": {
+        "x": 41.682539682539684,
+        "y": 35.36507936507937,
+        "scale": 83.33333333333334,
+        "rotation": 0
+      },
+      "gallery-gold": {
+        "x": 50,
+        "y": 35.55555555555556,
+        "scale": 86.46616541353383,
+        "rotation": 0
+      },
+      "bedroom-wood": {
+        "x": 50,
+        "y": 30.841269841269842,
+        "scale": 85.71428571428571,
+        "rotation": 0
+      }
+    }
   },
   {
     "id": "untitled-x",
     "title": "Untitled X",
-    "year": "2025",
+    "year": 2025,
     "medium": "Acrylic on canvas",
     "width": 70,
     "height": 50,
-    "price": "1,000",
+    "price": 1000,
     "status": "Available",
     "category": "Recent Work",
     "featured": false,
-    "description": "A painting of controlled chaos — the marks are free yet the composition holds. An intuitive resolution of opposites.",
+    "description": "A painting of controlled chaos â the marks are free yet the composition holds. An intuitive resolution of opposites.",
     "image": "images/works/work-10.jpg",
-    "order": 10
+    "order": 10,
+    "serial": null,
+    "room_positions": {
+      "living-minimal": {
+        "x": 50.23809523809524,
+        "y": 33.301587301587304,
+        "scale": 91.60997732426304,
+        "rotation": 0
+      },
+      "living-marble": {
+        "x": 65.31746031746032,
+        "y": 37.36507936507937,
+        "scale": 91.005291005291,
+        "rotation": 0
+      },
+      "living-grey": {
+        "x": 54.698412698412696,
+        "y": 37.14285714285714,
+        "scale": 83.06878306878306,
+        "rotation": 0
+      },
+      "studio-leather": {
+        "x": 42,
+        "y": 34.095238095238095,
+        "scale": 88.29365079365078,
+        "rotation": 0
+      },
+      "gallery-gold": {
+        "x": 50.95238095238095,
+        "y": 36.317460317460316,
+        "scale": 86.46616541353383,
+        "rotation": 0
+      },
+      "bedroom-wood": {
+        "x": 50.63492063492063,
+        "y": 33.12698412698413,
+        "scale": 95.23809523809523,
+        "rotation": 0
+      }
+    }
   },
   {
     "id": "untitled-xi",
     "title": "Untitled XI",
-    "year": "2025",
+    "year": 2025,
     "medium": "Acrylic on canvas",
     "width": 70,
     "height": 50,
-    "price": "1,000",
+    "price": 1000,
     "status": "Available",
     "category": "Recent Work",
     "featured": false,
-    "description": "An expansive horizontal movement punctuated by vertical interruptions. The painting feels like a score — rhythm written in pigment.",
+    "description": "An expansive horizontal movement punctuated by vertical interruptions. The painting feels like a score â rhythm written in pigment.",
     "image": "images/works/work-11.jpg",
-    "order": 11
+    "order": 11,
+    "serial": null,
+    "room_positions": {
+      "living-minimal": {
+        "x": 49.76190793650794,
+        "y": 35.3333,
+        "scale": 77.55102040816327,
+        "rotation": 0
+      },
+      "living-marble": {
+        "x": 63.57142857142857,
+        "y": 38.38095238095238,
+        "scale": 84.12698412698413,
+        "rotation": 0
+      },
+      "living-grey": {
+        "x": 54.06344920634921,
+        "y": 38.1587,
+        "scale": 76.1904761904762,
+        "rotation": 0
+      },
+      "studio-leather": {
+        "x": 42,
+        "y": 34.6031746031746,
+        "scale": 83.33333333333334,
+        "rotation": 0
+      },
+      "gallery-gold": {
+        "x": 50,
+        "y": 33.77777777777778,
+        "scale": 81.45363408521304,
+        "rotation": 0
+      },
+      "bedroom-wood": {
+        "x": 51.111111111111114,
+        "y": 31.603174603174605,
+        "scale": 94.6031746031746,
+        "rotation": 0
+      }
+    }
   },
   {
     "id": "untitled-xii",
     "title": "Untitled XII",
-    "year": "2025",
+    "year": 2025,
     "medium": "Acrylic on canvas",
     "width": 70,
     "height": 50,
-    "price": "1,000",
+    "price": 1000,
     "status": "Available",
     "category": "Recent Work",
     "featured": false,
-    "description": "A bridge between Kędzielski's earlier graphic work and his current painting practice. Loose forms suggest the human presence without depicting it.",
+    "description": "A bridge between KÄdzielski's earlier graphic work and his current painting practice. Loose forms suggest the human presence without depicting it.",
     "image": "images/works/work-12.jpg",
-    "order": 12
+    "order": 12,
+    "serial": null,
+    "room_positions": {
+      "living-minimal": {
+        "x": 50.079365079365076,
+        "y": 32.53968253968254,
+        "scale": 88.88888888888889,
+        "rotation": 0
+      },
+      "living-marble": {
+        "x": 64.04761904761905,
+        "y": 35.333333333333336,
+        "scale": 88.8888888888889,
+        "rotation": 0
+      },
+      "living-grey": {
+        "x": 55.17460317460318,
+        "y": 37.3968253968254,
+        "scale": 87.30158730158732,
+        "rotation": 0
+      },
+      "studio-leather": {
+        "x": 42.63492063492063,
+        "y": 34.85714285714286,
+        "scale": 95.23809523809524,
+        "rotation": 0
+      },
+      "gallery-gold": {
+        "x": 50.63492063492063,
+        "y": 35.80952380952381,
+        "scale": 86.88387635756057,
+        "rotation": 0
+      },
+      "bedroom-wood": {
+        "x": 50.79365079365079,
+        "y": 31.349206349206348,
+        "scale": 94.6031746031746,
+        "rotation": 0
+      }
+    }
   }
 ]
