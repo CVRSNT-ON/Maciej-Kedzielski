@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Maciej Kędzielski — Painter</title>
 <meta name="description" content="Maciej Kędzielski — Expressionist painter from Kraków, Poland. Original paintings and art prints available.">
 <meta name="author" content="Maciej Kędzielski">
@@ -34,8 +34,8 @@
   --max-w:1400px;
   --g:clamp(1.25rem,4vw,3rem)
 }
-html{scroll-behavior:smooth;scroll-padding-top:70px}
-body{font-family:var(--body);background:var(--bg);color:var(--text);line-height:1.6;font-weight:300;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+html{scroll-behavior:smooth;scroll-padding-top:70px;overflow-x:hidden;max-width:100%}
+body{font-family:var(--body);background:var(--bg);color:var(--text);line-height:1.6;font-weight:300;-webkit-font-smoothing:antialiased;overflow-x:hidden;max-width:100%}
 img{-webkit-user-select:none;user-select:none;pointer-events:none}
 a img,button img{pointer-events:auto}
 
@@ -89,7 +89,7 @@ a img,button img{pointer-events:auto}
 .about-inner{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:clamp(3rem,8vw,8rem);align-items:start}
 .about-left{}
 .about-eyebrow{font-family:var(--display);font-size:.65rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem}
-.about-title{font-family:var(--display);font-size:clamp(2rem,4vw,3.5rem);font-weight:800;line-height:1.0;letter-spacing:-.02em;text-transform:uppercase;margin-bottom:2rem}
+.about-title{font-family:var(--display);font-size:clamp(2rem,4vw,3.5rem);font-weight:800;line-height:1.0;letter-spacing:-.02em;text-transform:uppercase;margin-bottom:2rem;word-break:break-word;overflow-wrap:break-word}
 .about-body{font-size:.95rem;color:var(--text-l);line-height:1.85;margin-bottom:1.25rem}
 .about-facts{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2.5rem;padding-top:2.5rem;border-top:1px solid var(--border)}
 .about-fact-num{font-family:var(--display);font-size:2rem;font-weight:800;color:var(--accent);display:block;line-height:1}
@@ -110,7 +110,8 @@ a img,button img{pointer-events:auto}
 .featured-link:hover{color:var(--accent)}
 .works-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.06)}
 .work-card{background:var(--dark);text-decoration:none;color:var(--bg);display:block;overflow:hidden;position:relative}
-.work-card-img{width:100%;display:block;object-fit:cover;transition:transform .6s ease}
+.work-card-img-wrap{overflow:hidden;aspect-ratio:4/3}
+.work-card-img{width:100%;height:100%;display:block;object-fit:cover;object-position:center;transition:transform .6s ease}
 .work-card:hover .work-card-img{transform:scale(1.04)}
 .work-card-info{padding:1rem 1.15rem 1.25rem}
 .work-card-title{font-family:var(--display);font-size:1rem;font-weight:700;letter-spacing:.02em;text-transform:uppercase;margin-bottom:.2rem}
@@ -250,8 +251,9 @@ a img,button img{pointer-events:auto}
   .exh-item{grid-template-columns:1fr;gap:.3rem}.exh-tag{display:none}
   /* Contact */
   .contact-inner{grid-template-columns:1fr}
-  .contact-title{font-size:clamp(2rem,8vw,3rem)}
+  .contact-title{font-size:clamp(1.4rem,6vw,2.2rem);word-break:break-word;overflow-wrap:break-word;hyphens:auto}
   .form-row{grid-template-columns:1fr}
+  .contact-title{font-size:clamp(1.3rem,5.5vw,2rem)}
   .contact-form button{width:100%;text-align:center;align-self:stretch}
   /* Footer */
   .footer{flex-direction:column;text-align:center}
@@ -555,7 +557,7 @@ fetch('works.json').then(function(r){return r.json();}).then(function(works){
     var badgeColor=w.status==='Available'?'#2B6B3B':'#8B6914';
     var priceHtml=w.price?'€'+w.price:'Price on application';
     html+='<a href="works/view.html?id='+encodeURIComponent(w.id)+'" class="work-card">'
-      +'<img class="work-card-img" src="'+w.image+'" alt="'+w.title+'" loading="lazy" style="aspect-ratio:'+w.width+'/'+w.height+'">'
+      +'<div class="work-card-img-wrap"><img class="work-card-img" src="'+w.image+'" alt="'+w.title+'" loading="lazy"></div>'
       +'<div class="work-card-info">'
       +'<span class="work-badge" style="background:'+badgeColor+'">'+w.status+'</span>'
       +'<h3 class="work-card-title">'+w.title+'</h3>'

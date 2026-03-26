@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Portfolio — Maciej Kędzielski</title>
 <meta name="description" content="Complete portfolio of paintings by Maciej Kędzielski. Original expressionist works available for purchase.">
 <meta name="author" content="Maciej Kędzielski">
@@ -14,6 +14,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{overflow-x:hidden;max-width:100%}
 :root{--bg:#F9F6F1;--bg-2:#F0EBE3;--dark:#111110;--dark-2:#2C4235;--text:#1A1917;--text-l:#6B6560;--accent:#C85C3A;--accent-l:#E8A88E;--border:#E0D9CE;--card:#FDFAF7;--display:'Syne',sans-serif;--body:'Inter',-apple-system,sans-serif;--max-w:1400px;--g:clamp(1.25rem,4vw,3rem)}
 html{scroll-behavior:smooth;scroll-padding-top:70px}
 body{font-family:var(--body);background:var(--dark);color:var(--bg);line-height:1.6;font-weight:300;-webkit-font-smoothing:antialiased}
@@ -44,8 +45,8 @@ a img,button img,.pf-card img{pointer-events:auto}
 .pf-grid{max-width:var(--max-w);margin:0 auto;padding:0 var(--g) clamp(4rem,8vw,7rem);display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(249,246,241,.04);align-items:start}
 .pf-card{background:var(--dark);text-decoration:none;color:var(--bg);display:block;overflow:hidden;position:relative}
 .pf-card:hover .pf-card-img{transform:scale(1.04)}
-.pf-card-img-wrap{overflow:hidden}
-.pf-card-img{width:100%;display:block;object-fit:cover;transition:transform .6s ease}
+.pf-card-img-wrap{overflow:hidden;aspect-ratio:4/3}
+.pf-card-img{width:100%;height:100%;display:block;object-fit:cover;object-position:center;transition:transform .6s ease}
 .pf-card-body{padding:1rem 1.1rem 1.25rem}
 .pf-card-badge{display:inline-block;font-size:.55rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .5rem;background:#2B6B3B;color:#fff;margin-bottom:.5rem}
 .pf-badge-inquire{background:#8B6914}
@@ -137,7 +138,7 @@ function renderGrid(){
     var badgeBg=w.status==='Available'?'#2B6B3B':w.status==='Sold'?'#9B2C2C':'#8B6914';
     var priceHtml=w.price?'€'+w.price:'Price on application';
     html+='<a href="works/view.html?id='+encodeURIComponent(w.id)+'" class="pf-card pf-fade">'
-      +'<div class="pf-card-img-wrap"><img class="pf-card-img" src="'+w.image+'" alt="'+w.title+'" loading="lazy" style="aspect-ratio:'+w.width+'/'+w.height+'"></div>'
+      +'<div class="pf-card-img-wrap"><img class="pf-card-img" src="'+w.image+'" alt="'+w.title+'" loading="lazy"></div>'
       +'<div class="pf-card-body">'
       +'<span class="pf-card-badge" style="background:'+badgeBg+'">'+w.status+'</span>'
       +'<p class="pf-card-cat">'+w.category+'</p>'
