@@ -40,18 +40,22 @@ img{-webkit-user-select:none;user-select:none;pointer-events:none}
 a img,button img{pointer-events:auto}
 
 /* ── NAV ── */
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem var(--g);display:flex;justify-content:space-between;align-items:center;transition:background .4s,box-shadow .4s}
-.nav.scrolled{background:rgba(249,246,241,.95);backdrop-filter:blur(16px);box-shadow:0 1px 0 var(--border)}
-.nav-logo{font-family:var(--display);font-size:1rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text);text-decoration:none;transition:color .3s}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem var(--g);display:flex;justify-content:space-between;align-items:center;background:rgba(17,17,16,.6);backdrop-filter:blur(10px);transition:background .4s,box-shadow .4s}
+.nav.scrolled{background:rgba(249,246,241,.96);backdrop-filter:blur(16px);box-shadow:0 1px 0 var(--border)}
+.nav-logo{font-family:var(--display);font-size:1rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#F9F6F1;text-decoration:none;transition:color .3s}
+.nav.scrolled .nav-logo{color:var(--text)}
 .nav-logo:hover{color:var(--accent)}
 .nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
-.nav-links a{font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--text-l);text-decoration:none;transition:color .3s}
+.nav-links a{font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(249,246,241,.75);text-decoration:none;transition:color .3s}
+.nav.scrolled .nav-links a{color:var(--text-l)}
 .nav-links a:hover,.nav-links a.active{color:var(--accent)}
-.nav-ig{display:flex;align-items:center;gap:.4rem;font-size:.72rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--text-l);text-decoration:none;transition:color .3s}
+.nav-ig{display:flex;align-items:center;gap:.4rem;font-size:.72rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(249,246,241,.75);text-decoration:none;transition:color .3s}
+.nav.scrolled .nav-ig{color:var(--text-l)}
 .nav-ig svg{pointer-events:auto}
 .nav-ig:hover{color:var(--accent)}
 .hamburger{display:none;background:none;border:none;cursor:pointer;width:28px;height:20px;position:relative;z-index:110}
-.hamburger span{display:block;width:100%;height:2px;background:var(--text);position:absolute;left:0;transition:all .3s}
+.hamburger span{display:block;width:100%;height:2px;background:#F9F6F1;position:absolute;left:0;transition:all .3s}
+.nav.scrolled .hamburger span{background:var(--text)}
 .hamburger span:nth-child(1){top:0}.hamburger span:nth-child(2){top:50%;transform:translateY(-50%)}.hamburger span:nth-child(3){bottom:0}
 .hamburger.active span:nth-child(1){top:50%;transform:translateY(-50%) rotate(45deg)}.hamburger.active span:nth-child(2){opacity:0}.hamburger.active span:nth-child(3){bottom:50%;transform:translateY(50%) rotate(-45deg)}
 .mobile-menu{display:none;position:fixed;inset:0;z-index:105;background:var(--dark);flex-direction:column;justify-content:center;align-items:center;gap:2.5rem}
@@ -61,15 +65,15 @@ a img,button img{pointer-events:auto}
 .mobile-close{position:absolute;top:1.25rem;right:var(--g);background:none;border:none;font-size:2rem;color:var(--bg);cursor:pointer;z-index:111;line-height:1}
 
 /* ── HERO ── */
-.hero{height:100vh;min-height:600px;position:relative;overflow:hidden;display:flex;align-items:flex-end}
-.hero-img{position:absolute;inset:0;z-index:0}
-.hero-img img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+.hero{height:100vh;min-height:600px;position:relative;overflow:hidden;display:flex;align-items:flex-end;background:var(--dark)}
+.hero-img{position:absolute;inset:-2%;z-index:0}
+.hero-img img{width:104%;height:104%;object-fit:cover;object-position:center center;display:block;filter:brightness(.92)}
 .hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(to top, rgba(17,17,16,.75) 0%, rgba(17,17,16,.2) 50%, transparent 100%)}
 .hero-content{position:relative;z-index:2;padding:0 var(--g) clamp(2.5rem,6vw,5rem);width:100%;max-width:var(--max-w);margin:0 auto}
-.hero-label{font-family:var(--display);font-size:.65rem;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--accent-l);margin-bottom:1.2rem;display:block}
-.hero-title{font-family:var(--display);font-size:clamp(3.5rem,9vw,9rem);font-weight:800;line-height:.9;color:#F9F6F1;letter-spacing:-.02em;margin-bottom:1.5rem;text-transform:uppercase}
+.hero-label{font-family:var(--display);font-size:.65rem;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--accent-l);margin-bottom:1.2rem;display:block;text-shadow:0 1px 8px rgba(0,0,0,.6),0 0 2px rgba(0,0,0,.8)}
+.hero-title{font-family:var(--display);font-size:clamp(3rem,9vw,9rem);font-weight:800;line-height:.9;color:#F9F6F1;letter-spacing:-.02em;margin-bottom:1.5rem;text-transform:uppercase;text-shadow:0 2px 20px rgba(0,0,0,.4)}
 .hero-title span{display:block;color:var(--accent)}
-.hero-sub{font-size:.95rem;font-weight:300;color:rgba(249,246,241,.65);max-width:360px;line-height:1.65;margin-bottom:2rem}
+.hero-sub{font-size:.95rem;font-weight:300;color:rgba(249,246,241,.9);max-width:360px;line-height:1.65;margin-bottom:2rem;text-shadow:0 1px 8px rgba(0,0,0,.7),0 0 1px rgba(0,0,0,1)}
 .btn{display:inline-block;font-family:var(--display);font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:.85rem 2.2rem;text-decoration:none;transition:all .3s;cursor:pointer;border:none}
 .btn-light{background:var(--bg);color:var(--dark)}
 .btn-light:hover{background:var(--accent);color:#fff}
@@ -125,7 +129,7 @@ a img,button img{pointer-events:auto}
 .approach-quote{font-family:var(--display);font-size:clamp(1.4rem,3vw,2.2rem);font-weight:700;line-height:1.2;letter-spacing:-.01em;text-transform:uppercase;margin-bottom:2rem;color:var(--text)}
 
 /* ── WEAR THE WORK (Printify) ── */
-.wear{background:var(--dark-2);padding:clamp(5rem,10vw,9rem) var(--g)}
+.wear{background:var(--dark);padding:clamp(5rem,10vw,9rem) var(--g)}
 .wear-inner{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:clamp(3rem,8vw,6rem);align-items:center}
 .wear-text{}
 .wear-eyebrow{font-family:var(--display);font-size:.65rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--accent-l);margin-bottom:1.2rem}
@@ -210,17 +214,52 @@ a img,button img{pointer-events:auto}
   .wear-preview{display:none}
   .approach-inner{grid-template-columns:1fr}
   .approach-cols{grid-template-columns:1fr 1fr}
+  .about-inner{gap:clamp(2rem,5vw,4rem)}
 }
 @media(max-width:768px){
+  /* Nav */
   .nav-links{display:none}.nav-ig{display:none}.hamburger{display:block}
+  /* Hero */
+  .hero{min-height:100svh}
+  .hero-title{font-size:clamp(2.8rem,13vw,5rem);letter-spacing:-.01em}
+  .hero-sub{max-width:100%;font-size:.88rem}
+  .hero-content{padding:0 var(--g) clamp(2rem,8vw,3.5rem)}
+  /* Grid */
   .works-grid{grid-template-columns:1fr;gap:1px}
+  /* About */
   .about-inner{grid-template-columns:1fr}
   .about-right{display:none}
-  .contact-inner{grid-template-columns:1fr}
-  .exh-item{grid-template-columns:1fr;gap:.3rem}.exh-tag{display:none}
-  .form-row{grid-template-columns:1fr}
+  .about-facts{grid-template-columns:1fr 1fr}
+  /* Approach */
   .approach-cols{grid-template-columns:1fr}
+  .approach-quote{font-size:clamp(1.2rem,5vw,1.8rem)}
+  /* Wear */
+  .wear-inner{grid-template-columns:1fr}
+  .wear-preview{display:none}
+  .wear-title{font-size:clamp(2rem,10vw,3.5rem)}
+  .wear-items{gap:.4rem}
+  /* Exhibitions */
+  .exh-item{grid-template-columns:1fr;gap:.3rem}.exh-tag{display:none}
+  /* Contact */
+  .contact-inner{grid-template-columns:1fr}
+  .contact-title{font-size:clamp(2rem,8vw,3rem)}
+  .form-row{grid-template-columns:1fr}
+  .contact-form button{width:100%;text-align:center;align-self:stretch}
+  /* Footer */
   .footer{flex-direction:column;text-align:center}
+  /* Featured top */
+  .featured-top{flex-direction:column;gap:1rem;align-items:flex-start}
+  /* Printify overlay */
+  .printify-modal{height:90vh;border-radius:0}
+}
+@media(max-width:480px){
+  .hero-title{font-size:clamp(2.4rem,11vw,3.5rem)}
+  .about-facts{grid-template-columns:1fr 1fr;gap:1rem}
+  .about-fact-num{font-size:1.5rem}
+  .btn{padding:.8rem 1.6rem;font-size:.68rem}
+  .approach-cols{gap:2rem}
+  .wear-items .wear-item{font-size:.58rem;padding:.35rem .7rem}
+  .featured-top{margin-bottom:1.5rem}
 }
 </style>
 </head>
