@@ -1,7 +1,1 @@
-{
-  "name": "maciej-kedzielski",
-  "version": "1.0.0",
-  "dependencies": {
-    "stripe": "^14.0.0"
-  }
-}
+{"name":"maciej-kedzielski","version":"1.0.0","dependencies":{"stripe":"^14.0.0"}}
