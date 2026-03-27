@@ -81,7 +81,7 @@ a img,button img{pointer-events:auto}
 .btn-outline-light:hover{background:var(--bg);color:var(--dark)}
 
 /* ── REVEAL ── */
-.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+.reveal{opacity:1;transform:none}
 .reveal.visible{opacity:1;transform:none}
 
 /* ── ABOUT ── */
@@ -676,9 +676,7 @@ hb.addEventListener('click',function(){hb.classList.toggle('active');mm.classLis
 mc.addEventListener('click',closeMobile);
 function closeMobile(){hb.classList.remove('active');mm.classList.remove('open');document.body.style.overflow='';}
 
-// Reveal
-var revObs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');revObs.unobserve(e.target);}});},{threshold:0.08});
-document.querySelectorAll('.reveal').forEach(function(el){revObs.observe(el);});
+// Reveal disabled - content always visible
 
 // Featured works
 fetch('works.json').then(function(r){return r.json();}).then(function(works){
