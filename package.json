@@ -1,7 +1,6 @@
 {
-  "name": "maciej-kedzielski-site",
+  "name": "maciej-kedzielski",
   "version": "1.0.0",
-  "description": "Maciej Kędzielski artist website with Printify + Stripe shop",
   "dependencies": {
     "stripe": "^14.0.0"
   }

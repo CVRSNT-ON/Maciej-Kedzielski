@@ -1,65 +1,36 @@
-// netlify/functions/products.js
-// Fetches products from Printify and returns them to the frontend
-
-exports.handler = async function(event, context) {
-  const headers = {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': 'Content-Type',
-    'Content-Type': 'application/json'
-  };
-
-  if (event.httpMethod === 'OPTIONS') {
-    return { statusCode: 200, headers, body: '' };
-  }
+exports.handler = async function(event) {
+  const h = {'Access-Control-Allow-Origin':'*','Content-Type':'application/json'};
+  if(event.httpMethod==='OPTIONS') return {statusCode:200,headers:h,body:''};
 
   const TOKEN = process.env.PRINTIFY_TOKEN;
-
-  if (!TOKEN) {
-    return {
-      statusCode: 500,
-      headers,
-      body: JSON.stringify({ error: 'Missing PRINTIFY_TOKEN env var' })
-    };
-  }
+  if(!TOKEN) return {statusCode:500,headers:h,body:JSON.stringify({error:'PRINTIFY_TOKEN not set'})};
 
   try {
     // Auto-detect shop ID
     const shopsRes = await fetch('https://api.printify.com/v1/shops.json',
-      { headers: { 'Authorization': `Bearer ${TOKEN}` } });
+      {headers:{'Authorization':'Bearer '+TOKEN}});
     const shops = await shopsRes.json();
-    if (!shops.length) return { statusCode: 404, headers, body: JSON.stringify({ error: 'No shops found' }) };
-    const SHOP_ID = shops[0].id;
+    if(!shops.length) return {statusCode:404,headers:h,body:JSON.stringify({error:'No shops found'})};
+    const shopId = shops[0].id;
 
     const res = await fetch(
-      `https://api.printify.com/v1/shops/${SHOP_ID}/products.json?limit=20`,
-      { headers: { 'Authorization': `Bearer ${TOKEN}` } }
-    );
-
-    if (!res.ok) {
-      const txt = await res.text();
-      return { statusCode: res.status, headers, body: JSON.stringify({ error: txt }) };
-    }
+      `https://api.printify.com/v1/shops/${shopId}/products.json?limit=20`,
+      {headers:{'Authorization':'Bearer '+TOKEN}});
+    if(!res.ok) return {statusCode:res.status,headers:h,body:JSON.stringify({error:'Printify error '+res.status})};
 
     const data = await res.json();
-
-    // Simplify product data for frontend
-    const products = (data.data || []).map(p => ({
+    const products = (data.data||[]).map(p=>({
       id: p.id,
       title: p.title,
-      description: p.description,
-      images: p.images ? p.images.slice(0, 3).map(i => i.src) : [],
-      variants: (p.variants || []).filter(v => v.is_enabled).map(v => ({
-        id: v.id,
-        title: v.title,
-        price: v.price, // in cents, USD from Printify
-        sku: v.sku,
-        options: v.options
-      })),
-      options: p.options || []
+      description: p.description||'',
+      images: (p.images||[]).slice(0,3).map(i=>i.src),
+      variants: (p.variants||[]).filter(v=>v.is_enabled).map(v=>({
+        id: v.id, title: v.title, price: v.price
+      }))
     }));
 
-    return { statusCode: 200, headers, body: JSON.stringify(products) };
-  } catch (err) {
-    return { statusCode: 500, headers, body: JSON.stringify({ error: err.message }) };
+    return {statusCode:200,headers:h,body:JSON.stringify(products)};
+  } catch(e) {
+    return {statusCode:500,headers:h,body:JSON.stringify({error:e.message})};
   }
 };

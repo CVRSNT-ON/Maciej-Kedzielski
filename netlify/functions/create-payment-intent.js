@@ -1,48 +1,25 @@
-// netlify/functions/create-payment-intent.js
-// Creates a Stripe PaymentIntent for the cart total in EUR
-
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
-exports.handler = async function(event, context) {
-  const headers = {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': 'Content-Type',
-    'Content-Type': 'application/json'
-  };
-
-  if (event.httpMethod === 'OPTIONS') {
-    return { statusCode: 200, headers, body: '' };
-  }
-
-  if (event.httpMethod !== 'POST') {
-    return { statusCode: 405, headers, body: JSON.stringify({ error: 'Method not allowed' }) };
-  }
+exports.handler = async function(event) {
+  const h = {'Access-Control-Allow-Origin':'*','Content-Type':'application/json'};
+  if(event.httpMethod==='OPTIONS') return {statusCode:200,headers:h,body:''};
+  if(event.httpMethod!=='POST') return {statusCode:405,headers:h,body:''};
 
   try {
-    const { items, customerEmail } = JSON.parse(event.body);
+    const {items, customerEmail} = JSON.parse(event.body);
+    if(!items||!items.length) return {statusCode:400,headers:h,body:JSON.stringify({error:'Empty cart'})};
 
-    if (!items || !items.length) {
-      return { statusCode: 400, headers, body: JSON.stringify({ error: 'No items in cart' }) };
-    }
+    const amount = items.reduce((s,i)=>s+(i.price*i.quantity),0);
 
-    // Calculate total in cents (EUR)
-    const totalCents = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-
-    const paymentIntent = await stripe.paymentIntents.create({
-      amount: totalCents,
+    const intent = await stripe.paymentIntents.create({
+      amount,
       currency: 'eur',
       receipt_email: customerEmail,
-      metadata: {
-        items: JSON.stringify(items.map(i => ({ variantId: i.variantId, productId: i.productId, qty: i.quantity })))
-      }
+      metadata: {items: JSON.stringify(items.map(i=>({pid:i.productId,vid:i.variantId,qty:i.quantity})))}
     });
 
-    return {
-      statusCode: 200,
-      headers,
-      body: JSON.stringify({ clientSecret: paymentIntent.client_secret })
-    };
-  } catch (err) {
-    return { statusCode: 500, headers, body: JSON.stringify({ error: err.message }) };
+    return {statusCode:200,headers:h,body:JSON.stringify({clientSecret:intent.client_secret})};
+  } catch(e) {
+    return {statusCode:500,headers:h,body:JSON.stringify({error:e.message})};
   }
 };
