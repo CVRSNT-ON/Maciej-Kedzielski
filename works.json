@@ -2,56 +2,17 @@
   {
     "id": "untitled-i",
     "title": "Untitled I",
-    "year": 2026,
+    "year": "2026",
     "medium": "Acrylic on canvas",
     "width": 70,
     "height": 50,
-    "price": 1000,
+    "price": "1,000",
     "status": "Available",
     "category": "Recent Work",
     "featured": true,
     "description": "A layered composition in terracotta, olive and sky blue. Bold gestural strokes build and dissolve across the surface, the marks accumulating into a landscape of pure feeling.",
     "image": "images/works/work-01.jpg",
-    "order": 1,
-    "serial": null,
-    "room_positions": {
-      "living-minimal": {
-        "x": 48.96825396825397,
-        "y": 30,
-        "scale": 100,
-        "rotation": 0
-      },
-      "living-marble": {
-        "x": 64.68253968253968,
-        "y": 32.79365079365079,
-        "scale": 100,
-        "rotation": 0
-      },
-      "living-grey": {
-        "x": 53.74603174603175,
-        "y": 34.85714285714286,
-        "scale": 80.42328042328042,
-        "rotation": 0
-      },
-      "studio-leather": {
-        "x": 42,
-        "y": 28.507936507936506,
-        "scale": 100,
-        "rotation": 0
-      },
-      "gallery-gold": {
-        "x": 50.63492063492063,
-        "y": 32.76190476190476,
-        "scale": 91.89640768588137,
-        "rotation": 0
-      },
-      "bedroom-wood": {
-        "x": 50.63492063492063,
-        "y": 30.333333333333336,
-        "scale": 100,
-        "rotation": 0
-      }
-    }
+    "order": 1
   },
   {
     "id": "untitled-ii",
@@ -184,7 +145,7 @@
     "status": "Available",
     "category": "Recent Work",
     "featured": false,
-    "description": "A painting of controlled chaos â the marks are free yet the composition holds. An intuitive resolution of opposites.",
+    "description": "A painting of controlled chaos — the marks are free yet the composition holds. An intuitive resolution of opposites.",
     "image": "images/works/work-10.jpg",
     "order": 10
   },
@@ -199,7 +160,7 @@
     "status": "Available",
     "category": "Recent Work",
     "featured": false,
-    "description": "An expansive horizontal movement punctuated by vertical interruptions. The painting feels like a score â rhythm written in pigment.",
+    "description": "An expansive horizontal movement punctuated by vertical interruptions. The painting feels like a score — rhythm written in pigment.",
     "image": "images/works/work-11.jpg",
     "order": 11
   },
@@ -214,7 +175,7 @@
     "status": "Available",
     "category": "Recent Work",
     "featured": false,
-    "description": "A bridge between KÄdzielski's earlier graphic work and his current painting practice. Loose forms suggest the human presence without depicting it.",
+    "description": "A bridge between Kędzielski's earlier graphic work and his current painting practice. Loose forms suggest the human presence without depicting it.",
     "image": "images/works/work-12.jpg",
     "order": 12
   }
