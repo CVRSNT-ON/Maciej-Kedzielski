@@ -706,8 +706,10 @@ mc.addEventListener('click',closeMobile);
 function closeMobile(){hb.classList.remove('active');mm.classList.remove('open');document.body.style.overflow='';}
 
 // Reveal
-var revObs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');revObs.unobserve(e.target);}});},{threshold:0.08});
+var revObs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');revObs.unobserve(e.target);}});},{threshold:0,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.reveal').forEach(function(el){revObs.observe(el);});
+// Fallback: if observer doesn't fire (e.g. element already in viewport), trigger after short delay
+setTimeout(function(){document.querySelectorAll('.reveal:not(.visible)').forEach(function(el){var r=el.getBoundingClientRect();if(r.top<window.innerHeight)el.classList.add('visible');});},300);
 
 // Featured works
 fetch('works.json').then(function(r){return r.json();}).then(function(works){
@@ -785,6 +787,7 @@ function showView(name) {
   document.querySelectorAll('.shop-nav-btn').forEach(function(b) { b.classList.remove('active'); });
   var nb = document.getElementById('nav' + name.charAt(0).toUpperCase() + name.slice(1));
   if (nb) nb.classList.add('active');
+  if (name === 'checkout') setTimeout(mountCard, 50);
 }
 
 // ── PRODUCTS ──
@@ -929,11 +932,7 @@ function mountCard() {
   }
 }
 
-var origShowView = showView;
-showView = function(name) {
-  origShowView(name);
-  if (name === 'checkout') setTimeout(mountCard, 50);
-};
+// mountCard on checkout — integrated into showView above
 
 async function processPayment() {
   var btn = document.getElementById('payBtn');
