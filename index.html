@@ -83,8 +83,9 @@ a img,button img{pointer-events:auto}
 .btn-outline-light:hover{background:var(--bg);color:var(--dark)}
 
 /* ── REVEAL ── */
-.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
 .reveal.visible{opacity:1;transform:none}
+.no-js .reveal{opacity:1;transform:none}
 
 /* ── ABOUT ── */
 .about{padding:clamp(5rem,10vw,9rem) var(--g)}
@@ -708,8 +709,10 @@ function closeMobile(){hb.classList.remove('active');mm.classList.remove('open')
 // Reveal
 var revObs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');revObs.unobserve(e.target);}});},{threshold:0,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.reveal').forEach(function(el){revObs.observe(el);});
-// Fallback: if observer doesn't fire (e.g. element already in viewport), trigger after short delay
-setTimeout(function(){document.querySelectorAll('.reveal:not(.visible)').forEach(function(el){var r=el.getBoundingClientRect();if(r.top<window.innerHeight)el.classList.add('visible');});},300);
+// Force all reveals visible after 100ms as hard fallback
+setTimeout(function(){
+  document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('visible');});
+},100);
 
 // Featured works
 fetch('works.json').then(function(r){return r.json();}).then(function(works){
