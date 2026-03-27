@@ -335,7 +335,6 @@ a img,button img{pointer-events:auto}
   .featured-top{margin-bottom:1.5rem}
 }
 </style>
-<script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
 
@@ -665,6 +664,7 @@ a img,button img{pointer-events:auto}
   </div>
 </div>
 
+<script src="https://js.stripe.com/v3/"></script>
 <script>
 // Nav
 var nav=document.getElementById('nav');
@@ -722,8 +722,10 @@ var stripe=null,cardElement=null,cardMounted=false;
 var cart=[],allProducts=[],currentProduct=null;
 
 function openShop(view){
+  var overlay=document.getElementById('shopOverlay');
+  if(!overlay){console.error('shopOverlay not found');return;}
   if(!stripe)initStripe();
-  document.getElementById('shopOverlay').classList.add('open');
+  overlay.classList.add('open');
   document.body.style.overflow='hidden';
   showShopView(view||'products');
   if(!allProducts.length)loadProducts();
@@ -751,6 +753,7 @@ function showShopView(name){
 }
 
 function initStripe(){
+  if(typeof Stripe==='undefined'){console.error('Stripe.js not loaded');return;}
   stripe=Stripe('pk_test_51Hwc50AI566PUPmJad3bekaDp3qKwlaVghoMfQKbtGsVDDgSk2jfCHf3Jfr1PpGtjrtmtrQojYvC4cAXelgquMvJ00fJWrEFiJ');
   var els=stripe.elements({locale:'en'});
   cardElement=els.create('card',{style:{base:{color:'#F9F6F1',fontFamily:'Inter,sans-serif',fontSize:'14px','::placeholder':{color:'rgba(249,246,241,.3)'}},invalid:{color:'#e55'}}});
